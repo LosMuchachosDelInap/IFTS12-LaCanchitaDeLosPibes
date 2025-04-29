@@ -1,2 +1,2 @@
 # IFTS12-LaCanchitaDeLosPibes
-Proyecto materia de orellano de los martes
+Proyecto materia de Arellano de los martes
