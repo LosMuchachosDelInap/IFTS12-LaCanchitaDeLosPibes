@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2025 a las 00:31:03
+-- Tiempo de generación: 01-05-2025 a las 00:54:55
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `lacanchitadelospibes`
 --
-CREATE DATABASE lacanchitadelospibes;
+
 -- --------------------------------------------------------
 
 --
@@ -30,7 +30,7 @@ CREATE DATABASE lacanchitadelospibes;
 CREATE TABLE `cancha` (
   `id_cancha` int(4) NOT NULL,
   `id_nombreCancha` int(11) NOT NULL,
-  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
   `habilitado` int(11) NOT NULL DEFAULT 1,
   `cancelado` int(11) NOT NULL DEFAULT 0
@@ -45,7 +45,7 @@ CREATE TABLE `cancha` (
 CREATE TABLE `fecha` (
   `id_fecha` int(11) NOT NULL,
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `habiltado` int(11) NOT NULL DEFAULT 1,
   `cancelado` int(11) NOT NULL DEFAULT 0,
   `fechs` date NOT NULL
@@ -60,7 +60,7 @@ CREATE TABLE `fecha` (
 CREATE TABLE `horario` (
   `id_horario` int(11) NOT NULL,
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `habiltado` int(11) NOT NULL DEFAULT 1,
   `cancelado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -74,7 +74,7 @@ CREATE TABLE `horario` (
 CREATE TABLE `nombrecancha` (
   `id_nombreCancha` int(11) NOT NULL,
   `idcreate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `habiltado` int(11) NOT NULL DEFAULT 1,
   `cancelado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -88,7 +88,7 @@ CREATE TABLE `nombrecancha` (
 CREATE TABLE `precio` (
   `id_precio` int(6) NOT NULL,
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `habiltado` int(11) NOT NULL DEFAULT 1,
   `cancelado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -107,7 +107,7 @@ CREATE TABLE `reserva` (
   `id_precio` int(11) NOT NULL,
   `id_horario` int(11) NOT NULL,
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `habilitado` int(11) NOT NULL DEFAULT 1,
   `cancelado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -124,7 +124,7 @@ CREATE TABLE `roles` (
   `cliente` varchar(20) NOT NULL,
   `dueño` varchar(20) NOT NULL,
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `habilitado` int(11) NOT NULL DEFAULT 1,
   `cancelado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -142,7 +142,7 @@ CREATE TABLE `usuario` (
   `email` varchar(20) NOT NULL,
   `telefono` varchar(11) NOT NULL,
   `id_rol` int(11) NOT NULL,
-  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
   `habilitado` int(11) NOT NULL DEFAULT 1,
   `cancelado` int(11) NOT NULL DEFAULT 0
