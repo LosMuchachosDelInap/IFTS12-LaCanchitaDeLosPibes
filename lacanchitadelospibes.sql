@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2025 a las 00:54:55
+-- Tiempo de generación: 04-05-2025 a las 22:45:17
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -29,12 +29,24 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cancha` (
   `id_cancha` int(4) NOT NULL,
-  `id_nombreCancha` int(11) NOT NULL,
+  `nombreCancha` varchar(20) NOT NULL,
   `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
   `habilitado` int(11) NOT NULL DEFAULT 1,
   `cancelado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cancha`
+--
+
+INSERT INTO `cancha` (`id_cancha`, `nombreCancha`, `idUpdate`, `idCreate`, `habilitado`, `cancelado`) VALUES
+(1, 'monumental', '2025-05-04 20:03:13', '2025-05-04 20:03:13', 1, 0),
+(2, 'bombonera', '2025-05-04 20:03:13', '2025-05-04 20:03:13', 1, 0),
+(3, 'monumental', '2025-05-04 20:03:28', '2025-05-04 20:03:28', 1, 0),
+(4, 'bombonera', '2025-05-04 20:03:28', '2025-05-04 20:03:28', 1, 0),
+(5, 'gasometro', '2025-05-04 20:05:32', '2025-05-04 20:05:32', 1, 0),
+(6, 'gasometro', '2025-05-04 20:05:56', '2025-05-04 20:05:56', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -44,11 +56,11 @@ CREATE TABLE `cancha` (
 
 CREATE TABLE `fecha` (
   `id_fecha` int(11) NOT NULL,
+  `fecha` date NOT NULL,
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
   `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `habiltado` int(11) NOT NULL DEFAULT 1,
-  `cancelado` int(11) NOT NULL DEFAULT 0,
-  `fechs` date NOT NULL
+  `cancelado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -59,21 +71,8 @@ CREATE TABLE `fecha` (
 
 CREATE TABLE `horario` (
   `id_horario` int(11) NOT NULL,
+  `horario` time NOT NULL,
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `habiltado` int(11) NOT NULL DEFAULT 1,
-  `cancelado` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `nombrecancha`
---
-
-CREATE TABLE `nombrecancha` (
-  `id_nombreCancha` int(11) NOT NULL,
-  `idcreate` timestamp NOT NULL DEFAULT current_timestamp(),
   `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `habiltado` int(11) NOT NULL DEFAULT 1,
   `cancelado` int(11) NOT NULL DEFAULT 0
@@ -90,7 +89,8 @@ CREATE TABLE `precio` (
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
   `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `habiltado` int(11) NOT NULL DEFAULT 1,
-  `cancelado` int(11) NOT NULL DEFAULT 0
+  `cancelado` int(11) NOT NULL DEFAULT 0,
+  `precio` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -120,13 +120,11 @@ CREATE TABLE `reserva` (
 
 CREATE TABLE `roles` (
   `id_roles` int(11) NOT NULL,
-  `administrador` varchar(20) NOT NULL,
-  `cliente` varchar(20) NOT NULL,
-  `dueño` varchar(20) NOT NULL,
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
   `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `habilitado` int(11) NOT NULL DEFAULT 1,
-  `cancelado` int(11) NOT NULL DEFAULT 0
+  `cancelado` int(11) NOT NULL DEFAULT 0,
+  `rol` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -140,6 +138,7 @@ CREATE TABLE `usuario` (
   `apellido` varchar(20) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
+  `clave` varchar(8) NOT NULL,
   `telefono` varchar(11) NOT NULL,
   `id_rol` int(11) NOT NULL,
   `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -156,8 +155,7 @@ CREATE TABLE `usuario` (
 -- Indices de la tabla `cancha`
 --
 ALTER TABLE `cancha`
-  ADD PRIMARY KEY (`id_cancha`),
-  ADD KEY `id_nombreCancha` (`id_nombreCancha`);
+  ADD PRIMARY KEY (`id_cancha`);
 
 --
 -- Indices de la tabla `fecha`
@@ -170,12 +168,6 @@ ALTER TABLE `fecha`
 --
 ALTER TABLE `horario`
   ADD PRIMARY KEY (`id_horario`);
-
---
--- Indices de la tabla `nombrecancha`
---
-ALTER TABLE `nombrecancha`
-  ADD PRIMARY KEY (`id_nombreCancha`);
 
 --
 -- Indices de la tabla `precio`
@@ -215,7 +207,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `cancha`
 --
 ALTER TABLE `cancha`
-  MODIFY `id_cancha` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cancha` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `fecha`
@@ -228,12 +220,6 @@ ALTER TABLE `fecha`
 --
 ALTER TABLE `horario`
   MODIFY `id_horario` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `nombrecancha`
---
-ALTER TABLE `nombrecancha`
-  MODIFY `id_nombreCancha` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `precio`
@@ -262,18 +248,6 @@ ALTER TABLE `usuario`
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `cancha`
---
-ALTER TABLE `cancha`
-  ADD CONSTRAINT `cancha_ibfk_1` FOREIGN KEY (`id_nombreCancha`) REFERENCES `nombrecancha` (`id_nombrecancha`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `nombrecancha`
---
-ALTER TABLE `nombrecancha`
-  ADD CONSTRAINT `nombrecancha_ibfk_1` FOREIGN KEY (`id_nombreCancha`) REFERENCES `cancha` (`id_nombreCancha`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `reserva`
