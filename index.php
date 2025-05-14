@@ -19,7 +19,10 @@ error_reporting(E_ALL);
       <div>
             <?php include_once("src/Template/footer.php"); ?>
       </div>
-
+<?php
+include_once("src/Components/modalLoguin.php");
+include_once("src/Components/modalRegistrar.php");
+?>
 </body>
 
 </html>
