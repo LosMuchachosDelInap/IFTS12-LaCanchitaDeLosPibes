@@ -35,9 +35,9 @@ $idHorario = $_POST['id_horario'] ?? null;
 // LOGIN //
 $login = "SELECT usuario,clave FROM usuario WHERE usuario=$usuario AND clave=$clave AND habilitado=1 AND eliminado=0";
 // REGISTRO DE USUARIO //
-$crearPersona = "INSERT INTO persona (nombre,apellido,edad,dni,legajo) VALUES ('$nombre','$apellido','$edad','$dni','$legajo') ";
-// LISTAR REGISTROS PERSONAS//
-$listarPersona = "SELECT idPersona,apellido,nombre,edad,dni FROM persona WHERE habilitado=1 AND eliminado = 0 ORDER BY idPersona DESC ";
+$crearUsuario = "INSERT INTO usuario (apellido,nombre,email,clave,telefono,id_rol) VALUES ('$apellido','$nombre',$email','$clave','$telefono',$idRol) ";
+// LISTAR REGISTROS DE USUARIOS//
+$listarUsuarios = "SELECT id_usuario,apellido,nombre,email,clave,telefono,id_rol FROM usuario WHERE habilitado=1 AND eliminado = 0 ORDER BY id_usuario DESC ";
 // EMPLEADOS
 $listarEmpleados = "SELECT persona.idPersona, empleado.idEmpleado, persona.legajo, persona.nombre, persona.apellido, persona.edad, persona.dni, cargo.cargo, usuario.usuario
 FROM empleado
