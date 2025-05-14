@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-05-2025 a las 22:45:17
+-- Tiempo de generación: 14-05-2025 a las 23:04:41
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `lacanchitadelospibes`
+-- Base de datos: `Lacanchitadelospibes`
 --
-
+CREATE DATABASE `Lacanchitadelospibes`
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `cancha`
+  USE Lacanchitadelospibes;
+-- Estructura de tabla para la tabla `cargo`
 --
 
 CREATE TABLE `cancha` (
@@ -47,6 +47,23 @@ INSERT INTO `cancha` (`id_cancha`, `nombreCancha`, `idUpdate`, `idCreate`, `habi
 (4, 'bombonera', '2025-05-04 20:03:28', '2025-05-04 20:03:28', 1, 0),
 (5, 'gasometro', '2025-05-04 20:05:32', '2025-05-04 20:05:32', 1, 0),
 (6, 'gasometro', '2025-05-04 20:05:56', '2025-05-04 20:05:56', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `empleado`
+--
+
+CREATE TABLE `empleado` (
+  `id_empleado` int(11) NOT NULL,
+  `id_rol` int(11) NOT NULL,
+  `id_persona` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `habilitado` int(11) NOT NULL DEFAULT 1,
+  `cancelado` int(11) NOT NULL DEFAULT 0,
+  `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -76,6 +93,25 @@ CREATE TABLE `horario` (
   `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `habiltado` int(11) NOT NULL DEFAULT 1,
   `cancelado` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `persona`
+--
+
+CREATE TABLE `persona` (
+  `id_persona` int(11) NOT NULL,
+  `apellido` varchar(20) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `edad` varchar(3) NOT NULL,
+  `dni` varchar(10) NOT NULL,
+  `telefono` varchar(11) NOT NULL,
+  `habilitado` int(1) NOT NULL DEFAULT 1,
+  `cancelado` int(1) NOT NULL DEFAULT 0,
+  `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -135,12 +171,9 @@ CREATE TABLE `roles` (
 
 CREATE TABLE `usuario` (
   `id_usuario` int(4) NOT NULL,
-  `apellido` varchar(20) NOT NULL,
-  `nombre` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
   `clave` varchar(8) NOT NULL,
-  `telefono` varchar(11) NOT NULL,
-  `id_rol` int(11) NOT NULL,
+  `id_empleado` int(11) NOT NULL,
   `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
   `habilitado` int(11) NOT NULL DEFAULT 1,
@@ -158,6 +191,14 @@ ALTER TABLE `cancha`
   ADD PRIMARY KEY (`id_cancha`);
 
 --
+-- Indices de la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  ADD PRIMARY KEY (`id_empleado`),
+  ADD KEY `id_rol` (`id_rol`,`id_persona`,`id_usuario`),
+  ADD KEY `id_persona` (`id_persona`);
+
+--
 -- Indices de la tabla `fecha`
 --
 ALTER TABLE `fecha`
@@ -168,6 +209,12 @@ ALTER TABLE `fecha`
 --
 ALTER TABLE `horario`
   ADD PRIMARY KEY (`id_horario`);
+
+--
+-- Indices de la tabla `persona`
+--
+ALTER TABLE `persona`
+  ADD PRIMARY KEY (`id_persona`);
 
 --
 -- Indices de la tabla `precio`
@@ -197,7 +244,7 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD KEY `id_rol` (`id_rol`);
+  ADD KEY `id_empleado` (`id_empleado`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -210,6 +257,12 @@ ALTER TABLE `cancha`
   MODIFY `id_cancha` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `fecha`
 --
 ALTER TABLE `fecha`
@@ -220,6 +273,12 @@ ALTER TABLE `fecha`
 --
 ALTER TABLE `horario`
   MODIFY `id_horario` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `persona`
+--
+ALTER TABLE `persona`
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `precio`
@@ -250,6 +309,13 @@ ALTER TABLE `usuario`
 --
 
 --
+-- Filtros para la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_roles`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `empleado_ibfk_2` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id_persona`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `reserva`
 --
 ALTER TABLE `reserva`
@@ -263,7 +329,7 @@ ALTER TABLE `reserva`
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_roles`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

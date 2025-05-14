@@ -2,12 +2,15 @@
 // DECLARACIONES DE VARIABLES - ADJUNTO EL CAMPO DE LA TABLA (EXACTAMENTE COMO FIGURA EN LA TABLA) A LA VARIABLE
 // TABLA USUARIO
 $idUsuario = $_POST['id_usuario'] ?? null;
-$apellido = $_POST['apellido'] ?? null;
-$nombre = $_POST['nombre'] ?? null;
 $email = $_POST['email'] ?? null;
 $clave = $_POST['clave'] ?? null;
+// TABLA PERSONA
+$idPersona = $_POST['id_persona'] ?? null;
+$apellido = $_POST['apellido'] ?? null;
+$nombre = $_POST['nombre'] ?? null;
 $telefono = $_POST['telefono'] ?? null;
 $dni = $_POST['dni'] ?? null;
+$legajo = $_POST['edad'] ?? null;
 //TABLA ROLES
 $idRol = $_POST['id_roles'] ?? null;
 $rol = $_POST['rol'] ?? null;

@@ -3,10 +3,10 @@
 require_once 'src/ConectionBD/CConection.php';
 
 // Instanciao la clase
-$conexion = new ConectionDB();
+$conectarDB = new ConectionDB();
 
 // Obtengo la conexión
-$conn = $conexion->getConnection();
+$conn = $conectarDB->getConnection();
 
 ?>
 
@@ -40,29 +40,27 @@ $conn = $conexion->getConnection();
                     <input type="text" name="nombre" class="form-control" id="registrarNombre" aria-label="Nombre" aria-describedby="basic-addon1">
                     <span class="input-group-text" id="basic-addon1">Apellido</span>
                     <input type="text" name="apellido" class="form-control" id="registrarApellido" aria-label="apellido" aria-describedby="basic-addon1">
-                    <span class="input-group-text" id="basic-addon1">Email</span>
-                    <input type="text" name="email" class="form-control" id="registrarEmail" aria-label="email" aria-describedby="basic-addon1">
+                    <span class="input-group-text" id="basic-addon1">Edad</span>
+                    <input type="text" name="edad" class="form-control" id="registrarEdad" aria-label="edad" aria-describedby="basic-addon1">
                     <span class="input-group-text" id="basic-addon1">Password</span>
-                    <input type="text" name="clave" class="form-control" id="registrarPassword" aria-label="password" aria-describedby="basic-addon1">
+                    <input type="text" name="telefono" class="form-control" id="registrarTelefono" aria-label="telefono" aria-describedby="basic-addon1">
                   </div>
                 </div>
 
                 <div class="p-2 bg-light border">
                   <div class="input-group">
                     <!-- LISTA DESPLEGABLE CARGAOS --------------------------------------->
-                    <span class="input-group-text" id="basic-addon1">Legajo</span>
-                    <input type="text" name="legajo" id="registrarLegajo">
                     <span class="input-group-text" id="basic-addon1">Cargo a desempeñar</span>
-                    <select name="cargos" class="form-select btn btn-secondary" style="width: auto;">
+                    <select name="roles" class="form-select btn btn-secondary" style="width: auto;">
                       <?php
-                      $listarCargos = mysqli_query($conectarDB, $listarCargo);
-                      while ($row = mysqli_fetch_array($listarCargos)) { ?>
-                        <option value="<?php echo $row["idCargo"] ?>"><?php echo $row["cargo"] ?></option>
+                      $listarRoles = mysqli_query($conn, $listarCargo);
+                      while ($row = mysqli_fetch_array($listarRoles)) { ?>
+                        <option value="<?php echo $row["id_rol"] ?>"><?php echo $row["roles"] ?></option>
                       <?php } ?>
                     </select>
                   </div>
                 </div>
-                <!-- LISTA DESPLEGABLE CARGAOS --------------------------------------->
+                <!-- LISTA DESPLEGABLE CARGOS --------------------------------------->
 
                 <div class="p-2 bg-light border">
                   <div class="input-group">
@@ -76,23 +74,23 @@ $conn = $conexion->getConnection();
 
               if (isset($_POST['Registrate'])) {
                 $idCargo = $_POST['cargos'] ?? null;
-                $ingresarPersona = mysqli_query($conectarDB, $crearPersona);
-                $idPersonaObtenido = mysqli_insert_id($conectarDB);
+                $ingresarPersona = mysqli_query($conn, $crearPersona);
+                $idPersonaObtenido = mysqli_insert_id($conn);
 
                 if (isset($idPersonaObtenido)) {
 
                   $clave = $_POST['clave'];
                   $hashed_password = password_hash($clave, PASSWORD_DEFAULT);
                   $registrarPersonaQuery = "INSERT INTO usuario (idPersona, usuario, clave) VALUES (?, ?, ?)";
-                  $stmt = mysqli_prepare($conectarDB, $registrarPersonaQuery);
+                  $stmt = mysqli_prepare($conn, $registrarPersonaQuery);
                   mysqli_stmt_bind_param($stmt, "iss", $idPersonaObtenido, $usuario, $hashed_password);
                   mysqli_stmt_execute($stmt);
 
-                  $idUsuarioObtenido = mysqli_insert_id($conectarDB);
+                  $idUsuarioObtenido = mysqli_insert_id($conn);
 
                   if (isset($idCargo)) {
                     $crearEmpleado = "INSERT INTO empleado (idCargo,idPersona,idUsuario) VALUES (?,?,?)";
-                    $stmt = mysqli_prepare($conectarDB, $crearEmpleado);
+                    $stmt = mysqli_prepare($conn, $crearEmpleado);
                     mysqli_stmt_bind_param($stmt, "iii", $idCargo, $idPersonaObtenido, $idUsuarioObtenido);
                     mysqli_stmt_execute($stmt);
                   }

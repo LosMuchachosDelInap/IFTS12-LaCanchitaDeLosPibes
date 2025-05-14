@@ -7,5 +7,5 @@
   <link rel="stylesheet" href="src/Css/styles.css">
 
   <title>La canchita de los pibes</title>
-  
+
 </head>

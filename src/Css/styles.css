@@ -2,26 +2,35 @@
   box-sizing: border-box;
 }
 
+html,
 body {
+  height: 100%;
   margin: 0;
   padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: #333;
   font-family: sans-serif;
   color: aliceblue;
-  width: 100%;
-  height: 100%;
   text-align: center;
-  background-image: url('src/Public/FondoInicio.jpg');
-  background-size: 100% 100%;
+  background-image: url("/src/Public/FondoInicio.jpg");
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  /* background-size: 90% 90%;*/
   background-size: cover;
 }
 
 .footer {
   background-color: rgb(245, 11, 11);
   text-align: center;
-  position: absolute;
-  bottom: 0;
   width: 100%;
+  margin-top: auto; /* Esto empuja el footer al fondo */
+  position: static; /* Quitá position: absolute; */
 }
 
 .centrar {
@@ -32,6 +41,6 @@ body {
 }
 
 .fixed-bottom {
-    display: block !important;
-    z-index: 9999;
+  display: block !important;
+  z-index: 9999;
 }
