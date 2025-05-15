@@ -8,8 +8,8 @@ $conectarDB = new ConectionDB();
 // Obtengo la conexión
 $conn = $conectarDB->getConnection();
 
-// Llamo al archivo donde tengo las peticiones de sql
-require_once 'src/Model/peticionesSQL.php';
+// Llamo al archivo de las peticiones SQL
+require_once 'src/Model/peticionesSql.php';
 
 ?>
  

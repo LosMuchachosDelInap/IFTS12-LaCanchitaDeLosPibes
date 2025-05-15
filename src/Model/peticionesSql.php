@@ -38,20 +38,20 @@ $idHorario = $_POST['id_horario'] ?? null;
 
 //-------------------------------------SENTENCIAS----------------------------------------------------------------------------------------------------------------//
 // LOGIN //
-$login = "SELECT email,clave FROM usuario WHERE email=$email AND clave=$clave AND habilitado=1 AND cancelado=0";
+$login = "SELECT email,clave FROM usuario WHERE email='$email' AND clave='$clave' AND habilitado=1 AND cancelado=0";
 // CREAR USUARIO //
 $crearUsuario = "INSERT INTO usuario (email,clave) VALUES ('$email','$clave') ";
 // CREAR PERSONA
 $crearPersona = "INSERT INTO persona (apellido,nombre,edad,dni,telefono) VALUES ('$apellido','$nombre','$edad','$dni','$telefono')";
 // CREAR EMPLEADO
 $crearEmpleado = "INSERT INTO empleado (id_rol,id_persona,id_usuario) VALUES ('$idRol','$idPersona','$idUsuario')";
-// LISTAR REGISTROS DE USUARIOS// REVISAR
-$listarUsuarios = "SELECT id_usuario,email,clave,usuario.id_empleado 
+// LISTAR USUARIOS
+$listarUsuarios = "SELECT usuario.id_usuario, usuario.email, usuario.clave, empleado.id_empleado 
 FROM usuario 
-INNER JOIN usuario ON usuario.id_empleado = empleado.id_empleado
-WHERE habilitado=1 AND cancelado = 0 ORDER BY id_usuario DESC ";
+INNER JOIN empleado ON usuario.id_empleado = empleado.id_empleado
+WHERE usuario.habilitado=1 AND usuario.cancelado = 0 ORDER BY usuario.id_usuario DESC";
 
-// LISTAR EMPLEADOS // REVISAR
+// LISTAR EMPLEADOS
 $listarEmpleados = "SELECT persona.id_persona, empleado.id_empleado, persona.edad, persona.nombre, persona.apellido, persona.dni, roles.rol, usuario.email
 FROM empleado
 INNER JOIN persona ON empleado.id_persona = persona.id_persona 
@@ -60,13 +60,11 @@ INNER JOIN usuario ON empleado.id_usuario = usuario.id_usuario
 WHERE empleado.habilitado = 1 AND empleado.cancelado = 0 ORDER BY empleado.id_empleado ASC ";
 // LISTAR CARGO
 $listarRol = "SELECT id_roles,rol FROM roles WHERE habilitado=1 AND cancelado=0";
-// EDITAR EMPLEADOS---------------------------------------------------------------------------------------------------------//
-$listarEmpleado = "SELECT empleado.id_empleado, empleado.id_persona,empleado.id_rol,empleado.id_usuario, persona.nombre, persona.apellido, persona.edad, persona.dni, roles.rol, usuario.mail, usuario.clave
+// EDITAR EMPLEADOS
+$listarEmpleado = "SELECT empleado.id_empleado, empleado.id_persona, empleado.id_rol, empleado.id_usuario, persona.nombre, persona.apellido, persona.edad, persona.dni, roles.rol, usuario.email, usuario.clave
 FROM empleado
 INNER JOIN persona ON empleado.id_persona = persona.id_persona 
-INNER JOIN roles ON empleado.id_rol  = cargo.id_rol 
+INNER JOIN roles ON empleado.id_rol  = roles.id_roles 
 INNER JOIN usuario ON empleado.id_usuario = usuario.id_usuario
-WHERE id_empleado='$idEmpleado' AND empleado.habilitado=1 AND empleado.cancelado=0";
-
-// EDITAR EMPLEADOS---------------------------------------------------------------------------------------------------------//
+WHERE empleado.id_empleado='$idEmpleado' AND empleado.habilitado=1 AND empleado.cancelado=0";
 
