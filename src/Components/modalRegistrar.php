@@ -9,7 +9,7 @@ $conectarDB = new ConectionDB();
 $conn = $conectarDB->getConnection();
 
 ?>
-
+ 
 <!-- Modal Registrar-->
 <div class="modal fade " id="modalRegistrar" tabindex="-1" aria-labelledby="modalRegistrarLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -75,7 +75,7 @@ $conn = $conectarDB->getConnection();
               <?php
 
               if (isset($_POST['Registrate'])) {
-                $idCargo = $_POST['cargos'] ?? null;
+                $idRol = $_POST['rol'] ?? null;
                 $ingresarPersona = mysqli_query($conn, $crearPersona);
                 $idPersonaObtenido = mysqli_insert_id($conn);
 
@@ -83,17 +83,17 @@ $conn = $conectarDB->getConnection();
 
                   $clave = $_POST['clave'];
                   $hashed_password = password_hash($clave, PASSWORD_DEFAULT);
-                  $registrarPersonaQuery = "INSERT INTO usuario (idPersona, usuario, clave) VALUES (?, ?, ?)";
+                  $registrarPersonaQuery = "INSERT INTO usuario (id_persona, email, clave) VALUES (?, ?, ?)";
                   $stmt = mysqli_prepare($conn, $registrarPersonaQuery);
-                  mysqli_stmt_bind_param($stmt, "iss", $idPersonaObtenido, $usuario, $hashed_password);
+                  mysqli_stmt_bind_param($stmt, "iss", $idPersonaObtenido, $email, $hashed_password);
                   mysqli_stmt_execute($stmt);
 
                   $idUsuarioObtenido = mysqli_insert_id($conn);
 
-                  if (isset($idCargo)) {
-                    $crearEmpleado = "INSERT INTO empleado (idCargo,idPersona,idUsuario) VALUES (?,?,?)";
+                  if (isset($idRol)) {
+                    $crearEmpleado = "INSERT INTO empleado (id_rol,id_persona,id_usuario) VALUES (?,?,?)";
                     $stmt = mysqli_prepare($conn, $crearEmpleado);
-                    mysqli_stmt_bind_param($stmt, "iii", $idCargo, $idPersonaObtenido, $idUsuarioObtenido);
+                    mysqli_stmt_bind_param($stmt, "iii", $idRol, $idPersonaObtenido, $idUsuarioObtenido);
                     mysqli_stmt_execute($stmt);
                   }
                   echo "<script>alert('Usuariocreado exitosamente');</script>";

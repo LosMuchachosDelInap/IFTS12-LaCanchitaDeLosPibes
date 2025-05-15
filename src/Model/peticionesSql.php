@@ -36,12 +36,16 @@ $idHorario = $_POST['id_horario'] ?? null;
 
 //-------------------------------------SENTENCIAS----------------------------------------------------------------------------------------------------------------//
 // LOGIN //
-$login = "SELECT usuario,clave FROM usuario WHERE usuario=$usuario AND clave=$clave AND habilitado=1 AND eliminado=0";
-// REGISTRO DE USUARIO //
-$crearUsuario = "INSERT INTO usuario (apellido,nombre,email,clave,telefono,id_rol) VALUES ('$apellido','$nombre',$email','$clave','$telefono',$idRol) ";
-// LISTAR REGISTROS DE USUARIOS//
+$login = "SELECT email,clave FROM usuario WHERE email=$usuario AND clave=$clave AND habilitado=1 AND eliminado=0";
+// CREAR USUARIO //
+$crearUsuario = "INSERT INTO usuario (email,clave) VALUES ('$email','$clave') ";
+// CREAR PERSONA
+$crearPersona = "INSERT INTO persona (apellido,nombre,edad,dni,telefono) VALUES ('$apellido','$nombre','$edad','$dni','$telefono')";
+// CREAR EMPLEADO
+$crearEmpleado = "INSERT INTO empleado (idRol,idPersona,idUsuario) VALUES ('$idRol','$idPersona','$idUsuario')";
+// LISTAR REGISTROS DE USUARIOS// REVISAR
 $listarUsuarios = "SELECT id_usuario,apellido,nombre,email,clave,telefono,id_rol FROM usuario WHERE habilitado=1 AND eliminado = 0 ORDER BY id_usuario DESC ";
-// EMPLEADOS
+// LISTAR EMPLEADOS // REVISAR
 $listarEmpleados = "SELECT persona.idPersona, empleado.idEmpleado, persona.legajo, persona.nombre, persona.apellido, persona.edad, persona.dni, cargo.cargo, usuario.usuario
 FROM empleado
 INNER JOIN persona ON empleado.idPersona = persona.idPersona 
