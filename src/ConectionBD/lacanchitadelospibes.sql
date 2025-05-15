@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2025 a las 03:14:31
+-- Tiempo de generación: 16-05-2025 a las 01:48:20
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,11 +20,12 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `lacanchitadelospibes`
 --
-CREATE DATABASE `lacanchitadelospibes`
+CRAEATE DATABASE `lacanchitadelospibes`
 -- --------------------------------------------------------
 
-  USE lacanchitadelospibes;
-
+--
+-- Estructura de tabla para la tabla `cancha`
+-- USE `lacanchitadelospibes`
 
 CREATE TABLE `cancha` (
   `id_cancha` int(4) NOT NULL,
@@ -63,6 +64,15 @@ CREATE TABLE `empleado` (
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
   `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `empleado`
+--
+
+INSERT INTO `empleado` (`id_empleado`, `id_rol`, `id_persona`, `id_usuario`, `habilitado`, `cancelado`, `idCreate`, `idUpdate`) VALUES
+(1, 1, 4, 1, 1, 0, '2025-05-15 23:04:25', '2025-05-15 23:04:25'),
+(2, 1, 5, 2, 1, 0, '2025-05-15 23:09:28', '2025-05-15 23:09:28'),
+(3, 3, 6, 3, 1, 0, '2025-05-15 23:44:42', '2025-05-15 23:44:42');
 
 -- --------------------------------------------------------
 
@@ -112,6 +122,18 @@ CREATE TABLE `persona` (
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
   `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `persona`
+--
+
+INSERT INTO `persona` (`id_persona`, `apellido`, `nombre`, `edad`, `dni`, `telefono`, `habilitado`, `cancelado`, `idCreate`, `idUpdate`) VALUES
+(1, '', '', '', '', '', 1, 0, '2025-05-15 22:51:26', '2025-05-15 22:51:26'),
+(2, '', '', '', '', '', 1, 0, '2025-05-15 22:52:19', '2025-05-15 22:52:19'),
+(3, '', '', '', '', '', 1, 0, '2025-05-15 23:02:26', '2025-05-15 23:02:26'),
+(4, '', '', '', '', '', 1, 0, '2025-05-15 23:04:24', '2025-05-15 23:04:24'),
+(5, 'mino', 'seba', '46', '26589756', '1156321455', 1, 0, '2025-05-15 23:09:28', '2025-05-15 23:09:28'),
+(6, 'mino', 'seba', '56', '25879023', '3354658955', 1, 0, '2025-05-15 23:44:42', '2025-05-15 23:44:42');
 
 -- --------------------------------------------------------
 
@@ -182,13 +204,22 @@ INSERT INTO `roles` (`id_roles`, `idCreate`, `idUpdate`, `habilitado`, `cancelad
 CREATE TABLE `usuario` (
   `id_usuario` int(4) NOT NULL,
   `email` varchar(20) NOT NULL,
-  `clave` varchar(8) NOT NULL,
-  `id_empleado` int(11) NOT NULL,
+  `clave` varchar(100) NOT NULL,
+  `id_persona` int(11) NOT NULL,
   `idUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `idCreate` timestamp NOT NULL DEFAULT current_timestamp(),
   `habilitado` int(11) NOT NULL DEFAULT 1,
   `cancelado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `email`, `clave`, `id_persona`, `idUpdate`, `idCreate`, `habilitado`, `cancelado`) VALUES
+(1, '', '$2y$10$R', 4, '2025-05-15 23:04:25', '2025-05-15 23:04:25', 1, 0),
+(2, 'sebastianminotti@gma', '$2y$10$l', 5, '2025-05-15 23:09:28', '2025-05-15 23:09:28', 1, 0),
+(3, 'ifts12@gmail.com', '$2y$10$9mNLL2PTd1EdRdXMtnZRRuw.iI6/sxpOF2tcURI3iYgQQLE8hGH82', 6, '2025-05-15 23:44:42', '2025-05-15 23:44:42', 1, 0);
 
 --
 -- Índices para tablas volcadas
@@ -254,7 +285,7 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD KEY `id_empleado` (`id_empleado`);
+  ADD KEY `id_persona` (`id_persona`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -270,7 +301,7 @@ ALTER TABLE `cancha`
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `fecha`
@@ -288,7 +319,7 @@ ALTER TABLE `horario`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `precio`
@@ -312,7 +343,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -334,12 +365,6 @@ ALTER TABLE `reserva`
   ADD CONSTRAINT `reserva_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reserva_ibfk_4` FOREIGN KEY (`id_horario`) REFERENCES `horario` (`id_horario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reserva_ibfk_5` FOREIGN KEY (`id_cancha`) REFERENCES `cancha` (`id_cancha`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
