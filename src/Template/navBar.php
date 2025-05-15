@@ -17,6 +17,11 @@
 
     <!-- Botones de usuario a la derecha -->
     <div class="ms-auto d-flex align-items-center">
+  
+<!--
+Esta porcion de codigo es para que el boton de ingresar y registrate se vea en la parte superior derecha
+si no hay nadie logueado, si hay alguien logueado se ve el boton de cerrar sesion. 
+-->
       <?php if (!isset($_SESSION['usuario']) || empty($_SESSION['usuario'])) { ?>
         <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalLoguin">
           Ingresar

@@ -20,7 +20,7 @@ $conn = $conectarDB->getConnection();
       <div class="modal-body d-flex justify-content-center">
         <div class="card " style="width: 100%; height: auto ">
           <div class="card-header">
-            <h5 class="card-title text-center">Ingrese datos del nuevo empleado</h5>
+            <h5 class="card-title text-center">Ingrese sus datos</h5>
           </div>
           <div class="card-body">
             <form method="post">
@@ -49,27 +49,27 @@ $conn = $conectarDB->getConnection();
 
                 <div class="p-2 bg-light border">
                   <div class="input-group">
-                     <span class="input-group-text" id="basic-addon1">Telefono</span>
+                    <span class="input-group-text" id="basic-addon1">Telefono</span>
                     <input type="text" name="telefono" class="form-control" id="registrarTelefono" aria-label="telefono" aria-describedby="basic-addon1">
                     <!-- LISTA DESPLEGABLE CARGAOS --------------------------------------->
                     <span class="input-group-text" id="basic-addon1">Cargo a desempeñar</span>
                     <select name="roles" class="form-select btn btn-secondary" style="width: auto;">
                       <?php
-                      $listarRoles = mysqli_query($conn, $listarCargo);
+                      $listarRoles = mysqli_query($conn, $listarRol);
                       while ($row = mysqli_fetch_array($listarRoles)) { ?>
                         <option value="<?php echo $row["id_rol"] ?>"><?php echo $row["roles"] ?></option>
                       <?php } ?>
                     </select>
+                    <!-- LISTA DESPLEGABLE CARGOS --------------------------------------->
                   </div>
                 </div>
-                <!-- LISTA DESPLEGABLE CARGOS --------------------------------------->
-
+                <!--BOTON REGISTRAR USUARIO-->
                 <div class="p-2 bg-light border">
                   <div class="input-group">
                     <button type="submit" name="Registrate" class="btn btn-primary form-control">Registrar usuario</button>
                   </div>
                 </div>
-
+                <!--BOTON REGISTRAR USUARIO-->
               </div>
 
               <?php

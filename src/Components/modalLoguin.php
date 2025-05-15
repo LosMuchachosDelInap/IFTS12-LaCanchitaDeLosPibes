@@ -8,9 +8,6 @@ $conexion = new ConectionDB();
 // Obtengo la conexión
 $conn = $conexion->getConnection();
 // Creo el inicio de secion
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 ?>
 
 <div class="modal fade" id="modalLoguin" tabindex="-1" aria-labelledby="modalLoguinLabel" aria-hidden="true">
