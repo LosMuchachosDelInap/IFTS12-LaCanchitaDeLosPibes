@@ -1,24 +1,26 @@
 <?php
-// Llamo al archivo de la clase de conexión (lo requiero para poder instanciar la clase)
-require_once 'src/ConectionBD/CConection.php';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-// Instanciao la clase
-$conexion = new ConectionDB();
-
-// Obtengo la conexión
-$conn = $conexion->getConnection();
-// Creo el inicio de secion
+// Inicia la sesión antes de cualquier salida
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+// Llamo al archivo de la clase de conexión (lo requiero para poder instanciar la clase)
+require_once __DIR__ . '/../ConectionBD/CConection.php';
+// Instancio la clase
+$conectarDB = new ConectionDB();
+// Obtengo la conexión
+$conn = $conectarDB->getConnection();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuario = trim($_POST['usuario'] ?? null);
+    $usuario = trim($_POST['email'] ?? null);
     $clave = trim($_POST['clave'] ?? null);
 
     if (!empty($usuario) && !empty($clave)) {
-        $loginQuery = "SELECT clave FROM usuario WHERE usuario = ? AND habilitado = 1 AND eliminado = 0";
-        $stmt = mysqli_prepare($conectarDB, $loginQuery);
+        $loginQuery = "SELECT clave FROM usuario WHERE email = ? AND habilitado = 1 AND cancelado = 0";
+        $stmt = mysqli_prepare($conn, $loginQuery);
 
         if ($stmt) {
             mysqli_stmt_bind_param($stmt, "s", $usuario);
@@ -27,10 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_stmt_fetch($stmt);
 
             if (!empty($db_clave) && password_verify($clave, $db_clave)) {
-                $_SESSION['usuario'] = $usuario;
+                $_SESSION['email'] = $usuario;
                 $_SESSION['logged_in'] = true;
                 mysqli_stmt_close($stmt);
-                mysqli_close($conectarDB);
+                mysqli_close($conn);
                 header('Location: src/Views/listado.php');
                 exit;
             } else {
@@ -43,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $_SESSION['error_message'] = 'Debe llenar ambos campos';
     }
-    mysqli_close($conectarDB);
+    mysqli_close($conn);
     header('Location: /index.php'); // Redirige al modal
     exit;
 }
