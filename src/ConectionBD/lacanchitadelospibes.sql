@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-05-2025 a las 23:04:41
+-- Tiempo de generación: 15-05-2025 a las 03:14:31
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,14 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `Lacanchitadelospibes`
+-- Base de datos: `lacanchitadelospibes`
 --
-CREATE DATABASE `Lacanchitadelospibes`
+CREATE DATABASE `lacanchitadelospibes`
 -- --------------------------------------------------------
 
-  USE Lacanchitadelospibes;
--- Estructura de tabla para la tabla `cargo`
---
+  USE lacanchitadelospibes;
+
 
 CREATE TABLE `cancha` (
   `id_cancha` int(4) NOT NULL,
@@ -163,6 +162,17 @@ CREATE TABLE `roles` (
   `rol` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id_roles`, `idCreate`, `idUpdate`, `habilitado`, `cancelado`, `rol`) VALUES
+(1, '2025-05-15 00:54:58', '2025-05-15 00:54:58', 1, 0, 'Dueño'),
+(2, '2025-05-15 01:04:06', '2025-05-15 01:04:06', 1, 0, 'Adminstrativo'),
+(3, '0000-00-00 00:00:00', '2025-05-15 01:06:18', 1, 0, 'Bar'),
+(4, '2025-05-15 01:05:25', '2025-05-15 01:05:25', 1, 0, 'Alquiler'),
+(5, '0000-00-00 00:00:00', '2025-05-15 01:07:47', 1, 0, 'Estacionamiento');
+
 -- --------------------------------------------------------
 
 --
@@ -296,7 +306,7 @@ ALTER TABLE `reserva`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

@@ -18,10 +18,10 @@
     <!-- Botones de usuario a la derecha -->
     <div class="ms-auto d-flex align-items-center">
       <?php if (!isset($_SESSION['usuario']) || empty($_SESSION['usuario'])) { ?>
-        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#modalLoguin">
+        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalLoguin">
           Ingresar
         </button>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRegistrar">
+        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalRegistrar">
           Registrate
         </button>
       <?php } else { ?>
