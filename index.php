@@ -15,13 +15,7 @@ $conn = $conectarDB->getConnection();
 ?>
 <!DOCTYPE html>
 <html lang="es">
-/*
- * La Canchita de los Pibes
- * Desarrollado por: Los Muchachos del INAP
- * Autores: Varela Javier, Barrios Julian, Belloso Pablo, Minotti Sebastian
- * Fecha: 01-05-2025
- * Descripción: Página principal del sitio web.
- */
+
 <?php include_once("src/Template/head.php"); ?>
 
 <body>

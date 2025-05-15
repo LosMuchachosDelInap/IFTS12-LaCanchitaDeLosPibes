@@ -1,7 +1,8 @@
 <?php
 // Llamo al archivo de la clase de conexión (lo requiero para poder instanciar la clase)
 require_once 'src/ConectionBD/CConection.php';
-
+// Llamo al archivo donde tengo las peticiones de sql
+require_once 'src/Model/peticionesSQL.php';
 // Instanciao la clase
 $conectarDB = new ConectionDB();
 
@@ -29,7 +30,7 @@ $conn = $conectarDB->getConnection();
                 <div class="p-2 bg-light border">
                   <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">Email</span>
-                    <input type="email" name="email" class="form-control" placeholder="Ingrese su email" id="registrarEmail" aria-label="ingrese su imail" aria-describedby="basic-addon1">
+                    <input type="email" name="email" class="form-control" placeholder="Ingrese su email" id="registrarEmail" aria-label="ingrese su email" aria-describedby="basic-addon1">
                     <span class="input-group-text" id="basic-addon1">Password</span>
                     <input type="password" name="clave" class="form-control" placeholder="Inegrese password" id="registrarClave" aria-label="Inegrese password" aria-describedby="basic-addon1">
                   </div>
@@ -37,13 +38,13 @@ $conn = $conectarDB->getConnection();
                 <div class="p-2 bg-light border">
                   <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">Nombre</span>
-                    <input type="text" name="nombre" class="form-control" id="registrarNombre" aria-label="Nombre" aria-describedby="basic-addon1">
+                    <input type="text" name="nombre" class="form-control" id="registrarNombre" aria-label="nombre" aria-describedby="basic-addon1">
                     <span class="input-group-text" id="basic-addon1">Apellido</span>
                     <input type="text" name="apellido" class="form-control" id="registrarApellido" aria-label="apellido" aria-describedby="basic-addon1">
                     <span class="input-group-text" id="basic-addon1">Edad</span>
                     <input type="text" name="edad" class="form-control" id="registrarEdad" aria-label="edad" aria-describedby="basic-addon1">
                     <span class="input-group-text" id="basic-addon1">Dni</span>
-                    <input type="text" name="dni" class="form-control" id="registrarTelefono" aria-label="dni" aria-describedby="basic-addon1">
+                    <input type="text" name="dni" class="form-control" id="registrarDni" aria-label="dni" aria-describedby="basic-addon1">
                   </div>
                 </div>
 
@@ -53,11 +54,11 @@ $conn = $conectarDB->getConnection();
                     <input type="text" name="telefono" class="form-control" id="registrarTelefono" aria-label="telefono" aria-describedby="basic-addon1">
                     <!-- LISTA DESPLEGABLE CARGAOS --------------------------------------->
                     <span class="input-group-text" id="basic-addon1">Cargo a desempeñar</span>
-                    <select name="roles" class="form-select btn btn-secondary" style="width: auto;">
+                    <select name="cargos" class="form-select btn btn-secondary" style="width: auto;">
                       <?php
                       $listarRoles = mysqli_query($conn, $listarRol);
                       while ($row = mysqli_fetch_array($listarRoles)) { ?>
-                        <option value="<?php echo $row["id_rol"] ?>"><?php echo $row["roles"] ?></option>
+                        <option value="<?php echo $row["id_rol"] ?>"><?php echo $row["rol"] ?></option>
                       <?php } ?>
                     </select>
                     <!-- LISTA DESPLEGABLE CARGOS --------------------------------------->
@@ -96,7 +97,7 @@ $conn = $conectarDB->getConnection();
                     mysqli_stmt_bind_param($stmt, "iii", $idRol, $idPersonaObtenido, $idUsuarioObtenido);
                     mysqli_stmt_execute($stmt);
                   }
-                  echo "<script>alert('Usuariocreado exitosamente');</script>";
+                  echo "<script>alert('Usuario creado exitosamente');</script>";
                 } else {
                   echo "<script>alert('Error al crear usuario');</script>";
                 }
