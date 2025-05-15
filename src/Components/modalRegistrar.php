@@ -1,13 +1,15 @@
 <?php
 // Llamo al archivo de la clase de conexión (lo requiero para poder instanciar la clase)
 require_once 'src/ConectionBD/CConection.php';
-// Llamo al archivo donde tengo las peticiones de sql
-require_once 'src/Model/peticionesSQL.php';
+
 // Instanciao la clase
 $conectarDB = new ConectionDB();
 
 // Obtengo la conexión
 $conn = $conectarDB->getConnection();
+
+// Llamo al archivo donde tengo las peticiones de sql
+require_once 'src/Model/peticionesSQL.php';
 
 ?>
  
@@ -54,11 +56,11 @@ $conn = $conectarDB->getConnection();
                     <input type="text" name="telefono" class="form-control" id="registrarTelefono" aria-label="telefono" aria-describedby="basic-addon1">
                     <!-- LISTA DESPLEGABLE CARGAOS --------------------------------------->
                     <span class="input-group-text" id="basic-addon1">Cargo a desempeñar</span>
-                    <select name="cargos" class="form-select btn btn-secondary" style="width: auto;">
+                    <select name="rol" class="form-select btn btn-secondary" style="width: auto;">
                       <?php
                       $listarRoles = mysqli_query($conn, $listarRol);
                       while ($row = mysqli_fetch_array($listarRoles)) { ?>
-                        <option value="<?php echo $row["id_rol"] ?>"><?php echo $row["rol"] ?></option>
+                        <option value="<?php echo $row["id_roles"] ?>"><?php echo $row["rol"] ?></option>
                       <?php } ?>
                     </select>
                     <!-- LISTA DESPLEGABLE CARGOS --------------------------------------->
