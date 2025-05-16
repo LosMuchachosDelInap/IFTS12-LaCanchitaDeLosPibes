@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['logged_in'] = true;
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);
-                header('Location: src/Views/listado.php');
+                header('Location: /src/Views/listado.php'); // Redirige a la página de listado
                 exit;
             } else {
                 $_SESSION['error_message'] = 'Usuario o contraseña incorrecta';
