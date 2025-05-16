@@ -22,14 +22,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   exit;
 }
 
-/* Define las consultas necesarias
-$listarRol = "SELECT id_roles, rol FROM roles";
-$listarEmpleados = "SELECT e.id_empleado, u.email, p.nombre, p.apellido, p.edad, p.dni, p.telefono, c.rol 
-                    FROM empleado e
-                    JOIN usuario u ON e.id_usuario = u.id_usuario
-                    JOIN persona p ON e.id_persona = p.id_persona
-                    JOIN roles c ON e.id_rol = c.id_roles
-                    WHERE e.cancelado = 0 AND e.habilitado = 1";*/
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -91,10 +83,10 @@ $listarEmpleados = "SELECT e.id_empleado, u.email, p.nombre, p.apellido, p.edad,
 
                     $idUsuarioObtenido = mysqli_insert_id($conn);
 
-                    if (isset($idRol)) {
+                    if (isset($id_Rol)) {
                       $crearEmpleado = "INSERT INTO empleado (id_rol,id_persona,id_usuario) VALUES (?,?,?)";
                       $stmt = mysqli_prepare($conn, $crearEmpleado);
-                      mysqli_stmt_bind_param($stmt, "iii", $idRol, $idPersonaObtenido, $idUsuarioObtenido);
+                      mysqli_stmt_bind_param($stmt, "iii", $id_Rol, $idPersonaObtenido, $idUsuarioObtenido);
                       mysqli_stmt_execute($stmt);
                     }
                     echo "<script>alert('Usuario creado exitosamente');</script>";
