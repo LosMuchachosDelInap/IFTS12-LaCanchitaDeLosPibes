@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_stmt_fetch($stmt);
 
             if (!empty($db_clave) && password_verify($clave, $db_clave)) {
-                $_SESSION['email'] = $usuario;
+                $_SESSION['email'] = $usuario; // Guardar el email en la sesión
                 $_SESSION['logged_in'] = true;
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);

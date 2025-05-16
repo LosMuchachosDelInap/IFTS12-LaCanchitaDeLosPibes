@@ -20,12 +20,12 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `lacanchitadelospibes`
 --
-CRAEATE DATABASE `lacanchitadelospibes`
+CRAEATE DATABASE `lacanchitadelospibes`;
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `cancha`
--- USE `lacanchitadelospibes`
+ USE `lacanchitadelospibes`;
 
 CREATE TABLE `cancha` (
   `id_cancha` int(4) NOT NULL,
