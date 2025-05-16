@@ -45,7 +45,7 @@
     aria-labelledby="offcanvasDarkNavbarLabel">
     <div class="offcanvas-header bg-secondary">
       <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-        Bienvenido: <?php echo isset($_SESSION['usuario']) ? $_SESSION['usuario'] : "Ingrese Usuario" ?>
+        Bienvenido: <?php echo isset($_SESSION['email']) ? $_SESSION['email'] : "Ingrese Usuario" ?>
       </h5>
       <button
         type="button"
@@ -56,10 +56,10 @@
     <div class="offcanvas-body">
       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+          <a class="nav-link active" aria-current="page" href="/index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="src/Views/listado.php">Listar</a>
+          <a class="nav-link" href="/src/Views/listado.php">Listar</a>
         </li>
       </ul>
     </div>

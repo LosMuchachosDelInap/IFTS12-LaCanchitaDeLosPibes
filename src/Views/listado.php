@@ -42,7 +42,7 @@ $listarEmpleados = "SELECT e.id_empleado, u.email, p.nombre, p.apellido, p.edad,
 
   <div class="centrar">
     <div class="mt-5 card col-10">
-      <h5 class="card-header">Persona <?php echo " " . htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8'); ?></h5>
+      <h5 class="card-header">Usuario:  <?php echo " " . htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8'); ?></h5>
       <div class="card-body">
         <div class="text-center">
           <div class="row">
