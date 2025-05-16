@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 // Inicia la sesión antes de cualquier salida
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+      session_start();
 }
 // Llamo al archivo de la clase de conexión (lo requiero para poder instanciar la clase)
 require_once 'src/ConectionBD/CConection.php';
@@ -23,13 +23,13 @@ $conn = $conectarDB->getConnection();
             <?php include_once("src/Template/navBar.php"); ?>
       </div>
 
-      <div>
-            <?php include_once("src/Template/footer.php"); ?>
-      </div>
-<?php
-include_once("src/Components/modalLoguin.php");
-include_once("src/Components/modalRegistrar.php");
-?>
+
+      <?php include_once("src/Template/footer.php"); ?>
+
+      <?php
+      include_once("src/Components/modalLoguin.php");
+      include_once("src/Components/modalRegistrar.php");
+      ?>
 </body>
 
 </html>

@@ -52,7 +52,7 @@ INNER JOIN empleado ON usuario.id_empleado = empleado.id_empleado
 WHERE usuario.habilitado=1 AND usuario.cancelado = 0 ORDER BY usuario.id_usuario DESC";
 
 // LISTAR EMPLEADOS
-$listarEmpleados = "SELECT persona.id_persona, empleado.id_empleado, persona.edad, persona.nombre, persona.apellido, persona.dni, roles.rol, usuario.email
+$listarEmpleados = "SELECT persona.id_persona, empleado.id_empleado, persona.edad, persona.nombre, persona.apellido, persona.dni, roles.rol, usuario.email, persona.telefono
 FROM empleado
 INNER JOIN persona ON empleado.id_persona = persona.id_persona 
 INNER JOIN roles ON empleado.id_rol  = roles.id_roles 
@@ -61,7 +61,7 @@ WHERE empleado.habilitado = 1 AND empleado.cancelado = 0 ORDER BY empleado.id_em
 // LISTAR CARGO
 $listarRol = "SELECT id_roles,rol FROM roles WHERE habilitado=1 AND cancelado=0";
 // EDITAR EMPLEADOS
-$listarEmpleado = "SELECT empleado.id_empleado, empleado.id_persona, empleado.id_rol, empleado.id_usuario, persona.nombre, persona.apellido, persona.edad, persona.dni, roles.rol, usuario.email, usuario.clave
+$listarEmpleado = "SELECT empleado.id_empleado, empleado.id_persona, empleado.id_rol, empleado.id_usuario, persona.nombre, persona.apellido, persona.edad, persona.dni, roles.rol, usuario.email, usuario.clave, persona.telefono
 FROM empleado
 INNER JOIN persona ON empleado.id_persona = persona.id_persona 
 INNER JOIN roles ON empleado.id_rol  = roles.id_roles 

@@ -22,14 +22,14 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   exit;
 }
 
-// Define las consultas necesarias
+/* Define las consultas necesarias
 $listarRol = "SELECT id_roles, rol FROM roles";
-$listarEmpleados = "SELECT e.id_empleado, u.email, p.nombre, p.apellido, p.edad, p.dni, c.rol 
+$listarEmpleados = "SELECT e.id_empleado, u.email, p.nombre, p.apellido, p.edad, p.dni, p.telefono, c.rol 
                     FROM empleado e
                     JOIN usuario u ON e.id_usuario = u.id_usuario
                     JOIN persona p ON e.id_persona = p.id_persona
                     JOIN roles c ON e.id_rol = c.id_roles
-                    WHERE e.cancelado = 0 AND e.habilitado = 1";
+                    WHERE e.cancelado = 0 AND e.habilitado = 1";*/
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -42,7 +42,7 @@ $listarEmpleados = "SELECT e.id_empleado, u.email, p.nombre, p.apellido, p.edad,
 
   <div class="centrar">
     <div class="mt-5 card col-10">
-      <h5 class="card-header">Usuario:  <?php echo " " . htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8'); ?></h5>
+      <h5 class="card-header">Usuario: <?php echo " " . htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8'); ?></h5>
       <div class="card-body">
         <div class="text-center">
           <div class="row">
@@ -56,25 +56,27 @@ $listarEmpleados = "SELECT e.id_empleado, u.email, p.nombre, p.apellido, p.edad,
                 <input type="text" name="apellido" placeholder="apellido" class="mt-2 form-control">
                 <input type="text" name="edad" placeholder="edad" class="mt-2 form-control">
                 <input type="text" name="dni" placeholder="dni" class="mt-2 form-control">
+                <input type="text" name="telefono" placeholder="telefono" class="mt-2 form-control">
                 <div>
                   <div class="input-group">
                     <!-- LISTA DESPLEGABLE CARGAOS --------------------------------------->
-                    <select name="roles" class="mt-2 form-select form-control btn btn-secondary">
+                    <select name="rol" class="mt-2 form-select form-control btn btn-secondary">
                       <?php
                       $listarRoles = mysqli_query($conn, $listarRol);
                       while ($row = mysqli_fetch_array($listarRoles)) { ?>
                         <option value="<?php echo $row["id_roles"] ?>"><?php echo $row["rol"] ?></option>
                       <?php } ?>
                     </select>
+                    <!-- LISTA DESPLEGABLE CARGAOS --------------------------------------->
                   </div>
                 </div>
-                <!-- LISTA DESPLEGABLE CARGAOS --------------------------------------->
                 <button type="submit" name="crearEmpleado" class="mt-2 btn btn-primary form-control">Crear empleado</button>
                 <?php
-                // Crear persona
+                // crear empleado
+                // si se hace click en el boton de crear empleado
+                // se ejecuta la consulta de crear empleado
                 if (isset($_POST['crearEmpleado'])) {
-
-                  $id_rol = $_POST['roles'] ?? null;
+                  $id_Rol = $_POST['rol'] ?? null;
                   $ingresarPersona = mysqli_query($conn, $crearPersona);
                   $idPersonaObtenido = mysqli_insert_id($conn);
 
@@ -82,22 +84,22 @@ $listarEmpleados = "SELECT e.id_empleado, u.email, p.nombre, p.apellido, p.edad,
 
                     $clave = $_POST['clave'];
                     $hashed_password = password_hash($clave, PASSWORD_DEFAULT);
-                    $registrarPersonaQuery = "INSERT INTO usuario (id_persona, usuario, clave) VALUES (?, ?, ?)";
+                    $registrarPersonaQuery = "INSERT INTO usuario (id_persona, email, clave) VALUES (?, ?, ?)";
                     $stmt = mysqli_prepare($conn, $registrarPersonaQuery);
-                    mysqli_stmt_bind_param($stmt, "iss", $idPersonaObtenido, $usuario, $hashed_password);
+                    mysqli_stmt_bind_param($stmt, "iss", $idPersonaObtenido, $email, $hashed_password);
                     mysqli_stmt_execute($stmt);
 
                     $idUsuarioObtenido = mysqli_insert_id($conn);
 
-                    if (isset($id_rol)) {
+                    if (isset($idRol)) {
                       $crearEmpleado = "INSERT INTO empleado (id_rol,id_persona,id_usuario) VALUES (?,?,?)";
                       $stmt = mysqli_prepare($conn, $crearEmpleado);
-                      mysqli_stmt_bind_param($stmt, "iii", $id_rol, $idPersonaObtenido, $idUsuarioObtenido);
+                      mysqli_stmt_bind_param($stmt, "iii", $idRol, $idPersonaObtenido, $idUsuarioObtenido);
                       mysqli_stmt_execute($stmt);
                     }
-                    echo "<script>alert('Usuario'creado exitosamente);</script>";
+                    echo "<script>alert('Usuario creado exitosamente');</script>";
                   } else {
-                    echo "<script>alert('Error al crear usuario.');</script>";
+                    echo "<script>alert('Error al crear usuario');</script>";
                   }
                 }
                 ?>
@@ -119,6 +121,7 @@ $listarEmpleados = "SELECT e.id_empleado, u.email, p.nombre, p.apellido, p.edad,
                     <th scope="col">Apellido</th>
                     <th scope="col">Edad</th>
                     <th scope="col">Dni</th>
+                    <th scope="col">Telefono</th>
                     <th scope="col">Rol</th>
                     <th scope="col">Acciones</th>
                   </tr>
@@ -134,6 +137,7 @@ $listarEmpleados = "SELECT e.id_empleado, u.email, p.nombre, p.apellido, p.edad,
                       <td><?php echo $row["apellido"]; ?></td>
                       <td><?php echo $row["edad"]; ?></td>
                       <td><?php echo $row["dni"]; ?></td>
+                      <td><?php echo $row["telefono"]; ?></td>
                       <td><?php echo $row["rol"]; ?></td>
                       <td>
                         <a class="btn btn-primary" href="../Views/modificar.php?idEmpleado=<?php echo $row["id_empleado"]; ?>"><i class="bi bi-pencil-square"></i></a>

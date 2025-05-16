@@ -23,6 +23,7 @@ body {
   background-repeat: no-repeat;
   /* background-size: 90% 90%;*/
   background-size: cover;
+  padding-bottom: 60px; /* Ajusta según la altura de tu footer */
 }
 
 .footer {
@@ -30,7 +31,7 @@ body {
   text-align: center;
   width: 100%;
   margin-top: auto; /* Esto empuja el footer al fondo */
-  position: static; /* Quitá position: absolute; */
+  
 }
 
 .centrar {

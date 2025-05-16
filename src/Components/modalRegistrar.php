@@ -16,7 +16,7 @@ $conn = $conectarDB->getConnection();
 require_once 'src/Model/peticionesSql.php';
 
 ?>
- 
+
 <!-- Modal Registrar-->
 <div class="modal fade " id="modalRegistrar" tabindex="-1" aria-labelledby="modalRegistrarLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -73,16 +73,18 @@ require_once 'src/Model/peticionesSql.php';
                 <!--BOTON REGISTRAR USUARIO-->
                 <div class="p-2 bg-light border">
                   <div class="input-group">
-                    <button type="submit" name="Registrate" class="btn btn-primary form-control">Registrar usuario</button>
+                    <button type="submit" name="crearEmpleado" class="btn btn-primary form-control">Registrar usuario</button>
                   </div>
                 </div>
                 <!--BOTON REGISTRAR USUARIO-->
               </div>
 
               <?php
-
-              if (isset($_POST['Registrate'])) {
-                $idRol = $_POST['rol'] ?? null;
+              // crear empleado
+              // si se hace click en el boton de crear empleado
+              // se ejecuta la consulta de crear empleado
+              if (isset($_POST['crearEmpleado'])) {
+                $id_Rol = $_POST['rol'] ?? null;
                 $ingresarPersona = mysqli_query($conn, $crearPersona);
                 $idPersonaObtenido = mysqli_insert_id($conn);
 

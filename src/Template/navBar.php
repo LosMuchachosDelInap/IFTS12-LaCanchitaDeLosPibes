@@ -22,15 +22,15 @@
       Esta porcion de codigo es para que el boton de ingresar y registrate se vea en la parte superior derecha
       si no hay nadie logueado, si hay alguien logueado se ve el boton de cerrar sesion. 
       -->
-      <?php if (!isset($_SESSION['usuario']) || empty($_SESSION['usuario'])) { ?>
+      <?php if (!isset($_SESSION['email']) || empty($_SESSION['email'])) { ?>
         <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalLoguin">
           Ingresar
         </button>
         <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalRegistrar">
           Registrate
         </button>
-      <?php } else { ?>
-        <a class="btn btn-danger" href="<?php echo dirname($_SERVER['PHP_SELF']) . 'src/Controllers/cerrarSesision.php'; ?>">
+      <?php } else { ?><!--cambiar la ruta en casa-->
+                  <a class="btn btn-danger" href="<?php echo dirname($_SERVER['PHP_SELF']) . '../../Controllers/cerrarSesision.php'; ?>">
           <i class="bi bi-box-arrow-right"></i>
         </a>
       <?php } ?>
@@ -59,7 +59,8 @@
           <a class="nav-link active" aria-current="page" href="/index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/src/Views/listado.php">Listar</a>
+         <!-- <a class="nav-link" href="/src/Views/listado.php">Listar</a> para usar encasa -->
+             <a class="nav-link" href="src/Views/listado.php">Listar</a>
         </li>
       </ul>
     </div>
