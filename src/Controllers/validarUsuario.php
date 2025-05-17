@@ -50,21 +50,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header('Location: ../Views/listado.php'); // Redirige a la página de listado
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Bar') {
-                    echo '<script>
+                    echo /*'<script>
                         alert("El Usuario: ' . $usuario . ' tiene rol de administrador del Bar del club");
                        window.location.href = "/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php";
-                    </script>';
+                    </script>';--- PARA USAR EN EL TRABAJO*/
+                    '<script>
+                        alert("El Usuario: ' . $usuario . ' tiene rol de administrador del Bar del club");
+                       window.location.href = "/index.php"; 
+                    </script>';/* PARA USAR EN CASA */
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Alquiler') {
-                    echo '<script>
+                    echo /*'<script>
                         alert("El Usuario: ' . $usuario . ' tiene permisos para manejar los alquileres del club");
                         window.location.href = "/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php";
+                    </script>';*/
+                    '<script>
+                        alert("El Usuario: ' . $usuario . ' tiene permisos para manejar los alquileres del club");
+                        window.location.href = "/index.php";
                     </script>';
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Estacionamiento') {
-                    echo '<script>
+                    echo /*'<script>
                         alert("El Usuario: ' . $usuario . ' tiene permiso para manejar el estacionamiento del club");
                         window.location.href = "/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php";
+                    </script>';*/
+                    '<script>
+                        alert("El Usuario: ' . $usuario . ' tiene permiso para manejar el estacionamiento del club");
+                        window.location.href = "/index.php";
                     </script>';
                     exit;
                 }

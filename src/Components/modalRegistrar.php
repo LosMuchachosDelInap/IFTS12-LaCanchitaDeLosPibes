@@ -99,10 +99,10 @@ require_once 'src/Model/peticionesSql.php';
 
                   $idUsuarioObtenido = mysqli_insert_id($conn);
 
-                  if (isset($idRol)) {
+                  if (isset($id_Rol)) {
                     $crearEmpleado = "INSERT INTO empleado (id_rol,id_persona,id_usuario) VALUES (?,?,?)";
                     $stmt = mysqli_prepare($conn, $crearEmpleado);
-                    mysqli_stmt_bind_param($stmt, "iii", $idRol, $idPersonaObtenido, $idUsuarioObtenido);
+                    mysqli_stmt_bind_param($stmt, "iii", $id_Rol, $idPersonaObtenido, $idUsuarioObtenido);
                     mysqli_stmt_execute($stmt);
                   }
                   echo "<script>alert('Usuario creado exitosamente');</script>";

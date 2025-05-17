@@ -3,7 +3,7 @@ session_start();
 unset($_SESSION['logged_in']);
 session_destroy();
 // redirigir a la página de inicio de sesión
-// header('Location: /index.php');// usar en casa
-header('Location: ../../index.php');// usar en el trabajo
+header('Location: /index.php');// usar en casa
+// header('Location: ../../index.php');// usar en el trabajo
 exit;
 ?>
