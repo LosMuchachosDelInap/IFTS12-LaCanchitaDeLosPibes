@@ -67,4 +67,5 @@ INNER JOIN persona ON empleado.id_persona = persona.id_persona
 INNER JOIN roles ON empleado.id_rol  = roles.id_roles 
 INNER JOIN usuario ON empleado.id_usuario = usuario.id_usuario
 WHERE empleado.id_empleado='$idEmpleado' AND empleado.habilitado=1 AND empleado.cancelado=0";
-
+// ELIMINAR UN EMPLEADO
+$eliminarEmpleado = "UPDATE empleado SET habilitado=0, cancelado=1 WHERE id_empleado=?";

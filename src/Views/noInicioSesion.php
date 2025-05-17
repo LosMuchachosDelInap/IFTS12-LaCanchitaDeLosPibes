@@ -9,9 +9,7 @@
 
 <body>
     <h1>NO SE INICIO SESION</h1>
-    <button type="button" class="btn btn-primary">
-        <a class="navbar-brand text-white " href="../index.php">Volver</a>
-    </button>
+    <a class="btn btn-primary" href="../../index.php">Volver</a>
 </body>
 
 </html>

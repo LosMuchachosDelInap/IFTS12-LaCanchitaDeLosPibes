@@ -132,8 +132,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                       <td><?php echo $row["telefono"]; ?></td>
                       <td><?php echo $row["rol"]; ?></td>
                       <td>
-                        <a class="btn btn-primary" href="../Views/modificar.php?idEmpleado=<?php echo $row["id_empleado"]; ?>"><i class="bi bi-pencil-square"></i></a>
-                        <a class="btn btn-danger" href="../Views/eliminar.php?idEmpleado=<?php echo $row["id_empleado"]; ?>"><i class="bi bi-trash3-fill"></i></a>
+                        <a class="btn btn-primary" href="../Views/modificar.php?id_empleado=<?php echo $row["id_empleado"]; ?>"><i class="bi bi-pencil-square"></i></a>
+                        <a class="btn btn-danger" href="../Views/eliminar.php?id_empleado=<?php echo $row["id_empleado"]; ?>"><i class="bi bi-trash3-fill"></i></a>
                       </td>
                     </tr>
                   <?php } ?>

@@ -8,7 +8,10 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Llamo al archivo de la clase de conexión
-require_once 'src/ConectionBD/CConection.php';
+require_once __DIR__ . '/../ConectionBD/CConection.php';
+
+// Llamo al archivo de las peticiones SQL
+require_once __DIR__ . '/../Model/peticionesSql.php';
 
 class EliminarEmpleado {
     private $conn;
@@ -23,8 +26,12 @@ class EliminarEmpleado {
      * @return bool
      */
     public function deshabilitarPorId($idEmpleado) {
-        $sql = "UPDATE empleado SET habilitado=0, cancelado=1 WHERE id_empleado=?";
-        $stmt = $this->conn->prepare($sql);
+        /**
+         * En PHP, para usar una variable global dentro de un método, 
+         * debes declararla como "global" dentro del método.
+         */
+        global $eliminarEmpleado; // Trae la variable desde peticionesSql.php
+        $stmt = $this->conn->prepare($eliminarEmpleado);
         if ($stmt) {
             $stmt->bind_param("i", $idEmpleado);
             $result = $stmt->execute();
@@ -38,9 +45,9 @@ class EliminarEmpleado {
 // Instancio la clase y obtengo la conexión
 $conectarDB = new ConectionDB();
 $conn = $conectarDB->getConnection();
-
+// Verifico si se ha enviado el ID del empleado a eliminar
 $idEmpleado = $_GET['id_empleado'] ?? $_POST['id_empleado'] ?? null;
-
+// Verifico si el ID del empleado no está vacío
 if ($idEmpleado) {
     $eliminador = new EliminarEmpleado($conn);
     if ($eliminador->deshabilitarPorId($idEmpleado)) {
