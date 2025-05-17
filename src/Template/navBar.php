@@ -30,7 +30,8 @@
           Registrate
         </button>
       <?php } else { ?><!--cambiar la ruta en casa-->
-                  <a class="btn btn-danger" href="<?php echo dirname($_SERVER['PHP_SELF']) . '../../Controllers/cerrarSesision.php'; ?>">
+        
+                  <a class="btn btn-danger" href="<?php echo dirname($_SERVER['PHP_SELF']) . '/../Controllers/cerrarSesision.php'; ?>">
           <i class="bi bi-box-arrow-right"></i>
         </a>
       <?php } ?>

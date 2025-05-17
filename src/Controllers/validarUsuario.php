@@ -19,27 +19,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $clave = trim($_POST['clave'] ?? null);
 
     if (!empty($usuario) && !empty($clave)) {
-        $loginQuery = "SELECT clave FROM usuario WHERE email = ? AND habilitado = 1 AND cancelado = 0";
+        $loginQuery = "SELECT u.clave, u.id_usuario, e.id_rol, r.rol
+        FROM usuario u
+        JOIN empleado e ON u.id_usuario = e.id_usuario
+        JOIN roles r ON e.id_rol = r.id_roles
+        WHERE u.email = ? AND u.habilitado = 1 AND u.cancelado = 0";
+
         $stmt = mysqli_prepare($conn, $loginQuery);
 
         if ($stmt) {
             mysqli_stmt_bind_param($stmt, "s", $usuario);
             mysqli_stmt_execute($stmt);
-            mysqli_stmt_bind_result($stmt, $db_clave);
+            mysqli_stmt_bind_result($stmt, $db_clave, $id_usuario, $idRol, $nombreRol);
             mysqli_stmt_fetch($stmt);
 
             if (!empty($db_clave) && password_verify($clave, $db_clave)) {
                 $_SESSION['email'] = $usuario; // Guardar el email en la sesión
-                $_SESSION['logged_in'] = true;
+                $_SESSION['logged_in'] = true; // Marca al usuario como logueado
+                $_SESSION['id_usuario'] = $id_usuario; // Guarda el id del usuario
+                $_SESSION['id_rol'] = $idRol;         // Guarda el id del rol
+                $_SESSION['nombre_rol'] = $nombreRol; // Guarda el nombre del rol
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);
-               // header('Location: /src/Views/listado.php'); // Redirige a la página de listado // para usar en casa
-                 header('Location: ../Views/listado.php'); // Redirige a la página de listado // para usar en el trabajo
-                exit;
+
+                // chequea el rol del usuario y redirige a la página correspondiente
+                if (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Dueño') {
+                    header('Location: ../Views/listado.php'); // Redirige a la página de listado
+                    exit;
+                } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Administrativo') {
+                    header('Location: ../Views/listado.php'); // Redirige a la página de listado
+                    exit;
+                } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Bar') {
+                    echo '<script>
+                        alert("El Usuario: ' . $usuario . ' tiene rol de administrador del Bar del club");
+                       window.location.href = "/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php";
+                    </script>';
+                    exit;
+                } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Alquiler') {
+                    echo '<script>
+                        alert("El Usuario: ' . $usuario . ' tiene permisos para manejar los alquileres del club");
+                        window.location.href = "/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php";
+                    </script>';
+                    exit;
+                } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Estacionamiento') {
+                    echo '<script>
+                        alert("El Usuario: ' . $usuario . ' tiene permiso para manejar el estacionamiento del club");
+                        window.location.href = "/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php";
+                    </script>';
+                    exit;
+                }
             } else {
                 $_SESSION['error_message'] = 'Usuario o contraseña incorrecta';
+               // mysqli_stmt_close($stmt);
             }
-            mysqli_stmt_close($stmt);
+          
         } else {
             $_SESSION['error_message'] = 'Error interno del servidor';
         }
