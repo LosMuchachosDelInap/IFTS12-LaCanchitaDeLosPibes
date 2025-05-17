@@ -30,8 +30,8 @@
           Registrate
         </button>
       <?php } else { ?><!--cambiar la ruta en casa-->
-        
-                  <a class="btn btn-danger" href="<?php echo dirname($_SERVER['PHP_SELF']) . '/../Controllers/cerrarSesision.php'; ?>">
+        <a class="btn btn-danger" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/cerrarSesision.php">
+          <!-- <a class="btn btn-danger" href="<?php echo dirname($_SERVER['PHP_SELF']) . '/src/Controllers/cerrarSesision.php'; ?>"> -->
           <i class="bi bi-box-arrow-right"></i>
         </a>
       <?php } ?>
@@ -57,7 +57,8 @@
     <div class="offcanvas-body">
       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/index.php">Home</a>
+       
+          <a class="nav-link active" aria-current="page" href="<?php echo dirname($_SERVER['PHP_SELF']) . '../../../index.php'; ?>">Home</a>
         </li>
         <li class="nav-item">
          <!-- <a class="nav-link" href="/src/Views/listado.php">Listar</a> para usar encasa -->
