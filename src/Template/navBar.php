@@ -61,10 +61,14 @@
           <a class="nav-link active" aria-current="page" href="<?php echo dirname($_SERVER['PHP_SELF']) . '../../../index.php'; ?>">Home</a>
         </li>
         <li class="nav-item">
-         <!-- <a class="nav-link" href="/src/Views/listado.php">Listar</a> para usar encasa -->
+       
              <a class="nav-link" href="src/Views/listado.php">Listar</a>
+
         </li>
       </ul>
     </div>
+    <!--LISTADO DE TABLA LATERAL SEGUN ROL-->
+   
+
   </div>
 </nav>

@@ -146,8 +146,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     </div>
   </div>
 
-  <?php include_once __DIR__ . '/../Template/footer.php'; ?>
-
+  <?php include_once __DIR__ . '/../Template/footer.php';
+  include_once("Modificar.php");
+  ?>
 </body>
 
 </html>

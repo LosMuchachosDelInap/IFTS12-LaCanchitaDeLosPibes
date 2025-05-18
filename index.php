@@ -29,6 +29,7 @@ $conn = $conectarDB->getConnection();
       <?php
       include_once("src/Components/modalLoguin.php");
       include_once("src/Components/modalRegistrar.php");
+
       ?>
 </body>
 
