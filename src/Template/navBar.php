@@ -30,8 +30,8 @@
           Registrate
         </button>
       <?php } else { ?><!--cambiar la ruta en casa-->
-        <!-- <a class="btn btn-danger" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/cerrarSesision.php"> PARA USAR EN EL TRABAJO-->
-        <a class="btn btn-danger" href="../Controllers/cerrarSesision.php"><!-- PARA USAR EN CASA-->
+        <a class="btn btn-danger" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/cerrarSesision.php"><!-- PARA USAR EN EL TRABAJO-->
+        <!--<a class="btn btn-danger" href="../Controllers/cerrarSesision.php"> PARA USAR EN CASA-->
           <i class="bi bi-box-arrow-right"></i>
         </a>
       <?php } ?>
@@ -46,7 +46,8 @@
     aria-labelledby="offcanvasDarkNavbarLabel">
     <div class="offcanvas-header bg-secondary">
       <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-        Bienvenido: <?php echo isset($_SESSION['email']) ? $_SESSION['email'] : "Ingrese Usuario" ?>
+        Bienvenido: <?php echo htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8'); ?> /
+        <?php echo htmlspecialchars($_SESSION['nombre_rol'], ENT_QUOTES, 'UTF-8'); ?>
       </h5>
       <button
         type="button"
@@ -54,21 +55,22 @@
         data-bs-dismiss="offcanvas"
         aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
-      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-        <li class="nav-item">
-       
-          <a class="nav-link active" aria-current="page" href="<?php echo dirname($_SERVER['PHP_SELF']) . '../../../index.php'; ?>">Home</a>
-        </li>
-        <li class="nav-item">
-       
-             <a class="nav-link" href="src/Views/listado.php">Listar</a>
 
+    <!--LISTADO DE TABLA LATERAL SEGUN ROL-->
+    <div>
+      <ul class="list-group-flush">
+        <li class="list-group-item">
+          <!-- esta porcion de codigo "dirname($_SERVER['PHP_SELF'])" inserta la ruta hasta donde esta el proyecto 
+       ejemplo: http://localhost/Mis%20proyectos/IFTS12-lacanchitadelospibes , luego colocamos la ruta que falta hasta el archivo-->
+          <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '/index.php'; ?>" class="list-group-item">Home</a>
         </li>
+      <!--SE MUESTRA SEGUN ROL-->
+        <?php require_once __DIR__ . '/../Controllers/navBarListGroup.php'; ?>
       </ul>
     </div>
+
+
     <!--LISTADO DE TABLA LATERAL SEGUN ROL-->
-   
 
   </div>
 </nav>

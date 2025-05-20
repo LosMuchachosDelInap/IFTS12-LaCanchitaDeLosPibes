@@ -17,12 +17,21 @@ $conn = $conectarDB->getConnection();
 // Llamo al archivo de las peticiones SQL
 require_once __DIR__ . '/../Model/peticionesSql.php';
 
+// Verifica si está logueado
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   header('Location: ../Views/noInicioSesion.php');
   exit;
 }
 
+// Verifica si el rol NO es ni Administrador ni Dueño
+$rol = $_SESSION['nombre_rol'] ?? '';
+if ($rol !== 'Administrador' && $rol !== 'Dueño') {
+  header('Location: ../Views/noAutorizado.php');
+  exit;
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -34,7 +43,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
   <div class="centrar">
     <div class="mt-5 card col-10">
-      <h5 class="card-header">Usuario: <?php echo " " . htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8'); ?></h5>
+      <h5 class="card-header">
+        Usuario: <?php echo htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8'); ?> |
+        Rol: <?php echo htmlspecialchars($_SESSION['nombre_rol'], ENT_QUOTES, 'UTF-8'); ?>
+      </h5>
       <div class="card-body">
         <div class="text-center">
           <div class="row">

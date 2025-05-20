@@ -46,38 +46,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Dueño') {
                     header('Location: ../Views/listado.php'); // Redirige a la página de listado
                     exit;
-                } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Administrativo') {
+                } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Administratrador') {
                     header('Location: ../Views/listado.php'); // Redirige a la página de listado
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Bar') {
-                    echo /*'<script>
+                    echo '<script>
                         alert("El Usuario: ' . $usuario . ' tiene rol de administrador del Bar del club");
                        window.location.href = "/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php";
-                    </script>';--- PARA USAR EN EL TRABAJO*/
-                    '<script>
+                    </script>';//--- PARA USAR EN EL TRABAJO*/
+                    /*'<script>
                         alert("El Usuario: ' . $usuario . ' tiene rol de administrador del Bar del club");
                        window.location.href = "/index.php"; 
                     </script>';/* PARA USAR EN CASA */
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Alquiler') {
-                    echo /*'<script>
+                    echo '<script>
                         alert("El Usuario: ' . $usuario . ' tiene permisos para manejar los alquileres del club");
                         window.location.href = "/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php";
-                    </script>';*/
-                    '<script>
+                    </script>';// para usar en el trabajo
+                    /*'<script>
                         alert("El Usuario: ' . $usuario . ' tiene permisos para manejar los alquileres del club");
                         window.location.href = "/index.php";
-                    </script>';
+                    </script>';*/ // para usar en casa
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Estacionamiento') {
-                    echo /*'<script>
+                    echo '<script>
                         alert("El Usuario: ' . $usuario . ' tiene permiso para manejar el estacionamiento del club");
                         window.location.href = "/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php";
-                    </script>';*/
-                    '<script>
+                    </script>'; // para usar en el trabajo
+                    /*'<script>
                         alert("El Usuario: ' . $usuario . ' tiene permiso para manejar el estacionamiento del club");
                         window.location.href = "/index.php";
-                    </script>';
+                    </script>';*/ // para usar en casa
                     exit;
                 }
             } else {
