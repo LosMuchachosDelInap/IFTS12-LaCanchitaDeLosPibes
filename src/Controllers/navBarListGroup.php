@@ -5,15 +5,15 @@ $rol = $_SESSION['nombre_rol'] ?? '';
 
 <?php if ($rol === 'Administrador' || $rol === 'Dueño'): ?>
     <!--SE MUESTRA SI ES ADMINISTRADOR O DUEÑO-->
-    <li class="list-group-item">
+    <li class="list-group-item bg-dark text-white">
         <a href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Views/listado.php" class="list-group-item">Listado de empleados</a>
     </li>
-    <li class="list-group-item">A third item</li>
-    <li class="list-group-item">A fourth item</li>
-    <li class="list-group-item">And a fifth one</li>
+    <li class="list-group-item bg-dark text-white">A third item</li>
+    <li class="list-group-item bg-dark text-white">A fourth item</li>
+    <li class="list-group-item bg-dark text-white">And a fifth one</li>
 <?php elseif ($rol !== 'Administrador' || $rol !== 'Dueño'): ?>
     <!--SI NO ES ADMINISTRADOR NI DUEÑO-->
-    <li class="list-group-item">Solo cliente</li>
-    <li class="list-group-item">Solo cliente</li>
-    <li class="list-group-item">Solo cliente</li>
+    <li class="list-group-item bg-dark text-white">Solo cliente</li>
+    <li class="list-group-item bg-dark text-white">Solo cliente</li>
+    <li class="list-group-item bg-dark text-white">Solo cliente</li>
 <?php endif; ?>

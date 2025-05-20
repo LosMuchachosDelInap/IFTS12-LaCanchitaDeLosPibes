@@ -46,8 +46,12 @@
     aria-labelledby="offcanvasDarkNavbarLabel">
     <div class="offcanvas-header bg-secondary">
       <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-        Bienvenido: <?php echo htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8'); ?> /
-        <?php echo htmlspecialchars($_SESSION['nombre_rol'], ENT_QUOTES, 'UTF-8'); ?>
+        Bienvenido:
+        <?php
+          echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8') : 'Inicie Secion';
+          echo ' / ';
+          echo isset($_SESSION['nombre_rol']) ? htmlspecialchars($_SESSION['nombre_rol'], ENT_QUOTES, 'UTF-8') : '';
+        ?>
       </h5>
       <button
         type="button"
@@ -57,12 +61,12 @@
     </div>
 
     <!--LISTADO DE TABLA LATERAL SEGUN ROL-->
-    <div>
-      <ul class="list-group-flush">
-        <li class="list-group-item">
+    <div class="list-group-flush text-start p-3 m-0 border-0 bd-example m-0 border-0">
+      <ul class="list-group list-group-flush bg-dark text-white text-start">
+        <li class="list-group-item bg-dark text-white">
           <!-- esta porcion de codigo "dirname($_SERVER['PHP_SELF'])" inserta la ruta hasta donde esta el proyecto 
        ejemplo: http://localhost/Mis%20proyectos/IFTS12-lacanchitadelospibes , luego colocamos la ruta que falta hasta el archivo-->
-          <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '/index.php'; ?>" class="list-group-item">Home</a>
+          <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '../../../index.php'; ?>" class="bg-dark text-white text-decoration-none">Home</a> <!--USAR EN EL TRABAJO-->
         </li>
       <!--SE MUESTRA SEGUN ROL-->
         <?php require_once __DIR__ . '/../Controllers/navBarListGroup.php'; ?>
