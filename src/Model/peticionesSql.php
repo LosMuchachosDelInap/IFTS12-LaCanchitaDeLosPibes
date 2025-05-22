@@ -40,7 +40,7 @@ $idHorario = $_POST['id_horario'] ?? null;
 // LOGIN //
 $login = "SELECT email,clave FROM usuario WHERE email='$email' AND clave='$clave' AND habilitado=1 AND cancelado=0";
 // CREAR USUARIO //
-$crearUsuarioQuery = "INSERT INTO usuario (idPersona,email,clave) VALUES (?,?,?) ";
+$crearUsuarioQuery = "INSERT INTO usuario (id_persona, email,clave) VALUES (?,?,?) ";
 // CREAR PERSONA
 $crearPersonaQuery = "INSERT INTO persona (apellido,nombre,edad,dni,telefono) VALUES (?,?,?,?,?)";
 // CREAR EMPLEADO

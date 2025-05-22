@@ -1,7 +1,10 @@
 <?php
 
 require_once __DIR__ . '/../Model/peticionesSql.php';
-
+// Declaro las variables globales para poder usarlas ya que se encuentran en otro archivo
+global $crearPersonaQuery;
+global $crearUsuarioQuery;
+global $crearEmpleadoQuery;
 class RegistroUsuario
 {
     private $conn;
@@ -23,7 +26,7 @@ class RegistroUsuario
         return $this->conn;
     }
 
-    public function crearPersona($apellido, $nombre, $edad, $dni, $telefono, $crearPersona)
+    public function crearPersona($apellido, $nombre, $edad, $dni, $telefono, $crearPersonaQuery)
     {
         global $crearPersonaQuery;// declaro global a esta variable para poder usarla,ya que esta en otro archivo
         $stmt = mysqli_prepare($this->conn, $crearPersonaQuery);
@@ -41,7 +44,7 @@ class RegistroUsuario
         return $id;
     }
 
-    public function crearUsuario($idPersona, $email, $clave, $crearUsuario)
+    public function crearUsuario($idPersona, $email, $clave, $crearUsuarioQuery)
     {
         global $crearUsuarioQuery; // declaro global a esta variable para poder usarla,ya que esta en otro archivo
         $hashed_password = password_hash($clave, PASSWORD_DEFAULT);
@@ -60,7 +63,7 @@ class RegistroUsuario
         return $id;
     }
 
-    public function crearEmpleado($idRol, $idPersona, $idUsuario, $crearEmpleado)
+    public function crearEmpleado($idRol, $idPersona, $idUsuario, $crearEmpleadoQuery)
     {
         global $crearEmpleadoQuery; // declaro global a esta variable para poder usarla,ya qu
         $stmt = mysqli_prepare($this->conn, $crearEmpleadoQuery);

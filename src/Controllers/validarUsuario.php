@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Dueño') {
                     header('Location: ../Views/listado.php'); // Redirige a la página de listado
                     exit;
-                } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Administratrador') {
+                } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Administrador') {
                     header('Location: ../Views/listado.php'); // Redirige a la página de listado
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Bar') {
@@ -82,16 +82,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             } else {
                 $_SESSION['error_message'] = 'Usuario o contraseña incorrecta';
-               // mysqli_stmt_close($stmt);
+             
             }
-          
+           // mysqli_stmt_close($stmt);
         } else {
             $_SESSION['error_message'] = 'Error interno del servidor';
         }
     } else {
         $_SESSION['error_message'] = 'Debe llenar ambos campos';
     }
-    mysqli_close($conn);
+   // mysqli_close($conn);
     header('Location: /index.php'); // Redirige al modal
     exit;
 }
