@@ -17,7 +17,8 @@ body {
   font-family: sans-serif;
   color: aliceblue;
   text-align: center;
-  background-image: url('/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/Public/FondoInicio.jpg');
+  /*background-image: url('/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/Public/FondoInicio.jpg');*//* PARA USAR EN EL TRABAJO*/
+  background-image: url('/src/Public/FondoInicio.jpg'); /* PARA USAR EN CASA*/
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;

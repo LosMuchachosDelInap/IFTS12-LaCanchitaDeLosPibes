@@ -159,7 +159,6 @@ if ($rol !== 'Administrador' && $rol !== 'Dueño') {
   </div>
 
   <?php include_once __DIR__ . '/../Template/footer.php';
-  include_once("Modificar.php");
   ?>
 </body>
 
