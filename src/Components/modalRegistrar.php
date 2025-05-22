@@ -21,6 +21,10 @@ $conn = $conectarDB->getConnection();
 // Creo un Objeto de la clase RegistroUsuario
 $registro = new RegistroUsuario($conn);
 
+// Declaro las variables globales para poder usarlas ya que se encuentran en otro archivo
+global $crearPersonaQuery;
+global $crearUsuarioQuery;
+global $crearEmpleadoQuery;
 ?>
 
 <!-- Modal Registrar-->
@@ -100,14 +104,17 @@ $registro = new RegistroUsuario($conn);
                 $dni = $_POST['dni'] ?? '';
                 $telefono = $_POST['telefono'] ?? '';
 
+                echo "<script>console.log('Antes del if de idPersonaObtenido');</script>";
                 // Usar la query de peticionesSql.php y reemplazar los valores
-                $idPersonaObtenido = $registro->crearPersona($apellido, $nombre, $edad, $dni, $telefono, $crearPersona);
+                $idPersonaObtenido = $registro->crearPersona($apellido, $nombre, $edad, $dni, $telefono, $crearPersonaQuery);
 
                 if ($idPersonaObtenido) {
-                  $idUsuarioObtenido = $registro->crearUsuario($idPersonaObtenido, $email, $clave, $crearUsuario);
+                  echo "<script>console.log('Entró al if: idPersonaObtenido tiene valor:');</script>";
+                  echo "<script>console.log('idPersonaObtenido: $idPersonaObtenido');</script>";
+                  $idUsuarioObtenido = $registro->crearUsuario($idPersonaObtenido, $email, $clave, $crearUsuarioQuery);
 
                   if ($id_Rol && $idUsuarioObtenido) {
-                    $registro->crearEmpleado($id_Rol, $idPersonaObtenido, $idUsuarioObtenido, $crearEmpleado);
+                    $registro->crearEmpleado($id_Rol, $idPersonaObtenido, $idUsuarioObtenido, $crearEmpleadoQuery);
                   }
                   echo "<script>alert('Usuario creado exitosamente');</script>";
                 } else {
