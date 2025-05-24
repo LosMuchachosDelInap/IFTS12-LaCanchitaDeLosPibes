@@ -17,31 +17,66 @@ body {
   font-family: sans-serif;
   color: aliceblue;
   text-align: center;
-  background-image: url(../Public/FondoInicio.jpg);
+  background-image: url(../Public/Fondo3.webp);
   background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  /* background-size: 90% 90%;*/
-  background-size: cover;
-  padding-bottom: 60px; /* Ajusta según la altura de tu footer */
-}
-
-.footer {
-  background-color: rgb(245, 11, 11);
-  text-align: center;
-  width: 100%;
-  margin-top: auto; /* Esto empuja el footer al fondo */
-  
-}
-
-.centrar {
+body {
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Set the height to 100% of the viewport */
+  flex-direction: column;
+  background-color: #333;
+  font-family: sans-serif;
+  color: aliceblue;
+  text-align: center;
+  background-image: url(../Public/Fondo3.webp);
+  background-position: center;
+  background-attachment: scroll; /* Cambia a scroll */
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 10px;
+}
+}
+.footer {
+    min-height: 50px; 
+    width: 50px;      
+    margin: 5px;
+}
+
+.footer-texto {
+    font-size: 1.2rem; 
+    padding: 5px;
+    margin-bottom: 5px;
+    margin-top: auto; /* Esto empuja el footer al fondo */
+}
+
+.iconos-redes-sociales a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding: 2px;
+    margin: 15px;
+    border: 2px solid Black;
+    border-radius: 50%;
+    transition: all 0.2s ease-in; 
+}
+.iconos-redes-sociales a:hover {
+background-color: black;
+border: 2px solid rgb(13, 110, 253);
+}
+
+.iconos-redes-sociales a :hover i {
+color: white
+
+}
+.centrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the height to 100% of the viewport */
 }
 
 .fixed-bottom {
-  display: block !important;
-  z-index: 9999;
+    display: block !important;
+    z-index: 9999;
 }

@@ -31,7 +31,7 @@
         </button>
       <?php } else { ?><!--cambiar la ruta en casa-->
         <a class="btn btn-danger" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/cerrarSesision.php"><!-- PARA USAR EN EL TRABAJO-->
-        <!--<a class="btn btn-danger" href="../Controllers/cerrarSesision.php"> PARA USAR EN CASA-->
+          <!--<a class="btn btn-danger" href="../Controllers/cerrarSesision.php"> PARA USAR EN CASA-->
           <i class="bi bi-box-arrow-right"></i>
         </a>
       <?php } ?>
@@ -48,9 +48,9 @@
       <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
         Bienvenido:
         <?php
-          echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8') : 'Inicie Secion';
-          echo ' / ';
-          echo isset($_SESSION['nombre_rol']) ? htmlspecialchars($_SESSION['nombre_rol'], ENT_QUOTES, 'UTF-8') : '';
+        echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8') : 'Inicie Secion';
+        echo ' / ';
+        echo isset($_SESSION['nombre_rol']) ? htmlspecialchars($_SESSION['nombre_rol'], ENT_QUOTES, 'UTF-8') : '';
         ?>
       </h5>
       <button
@@ -66,9 +66,12 @@
         <li class="list-group-item bg-dark text-white">
           <!-- esta porcion de codigo "dirname($_SERVER['PHP_SELF'])" inserta la ruta hasta donde esta el proyecto 
        ejemplo: http://localhost/Mis%20proyectos/IFTS12-lacanchitadelospibes , luego colocamos la ruta que falta hasta el archivo-->
-          <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '../../../index.php'; ?>" class="bg-dark text-white text-decoration-none">Home</a> <!--USAR EN EL TRABAJO-->
+          <!--<a href="<?php
+                        //echo dirname($_SERVER['PHP_SELF']) . '../../../index.php'; 
+                        ?>" class="bg-dark text-white text-decoration-none">Home</a>--> <!--USAR EN EL TRABAJO-->
+          <a href="../src/index.php" class="bg-dark text-white text-decoration-none">Home</a> <!--USAR EN casa-->
         </li>
-      <!--SE MUESTRA SEGUN ROL-->
+        <!--SE MUESTRA SEGUN ROL-->
         <?php require_once __DIR__ . '/../Controllers/navBarListGroup.php'; ?>
       </ul>
     </div>

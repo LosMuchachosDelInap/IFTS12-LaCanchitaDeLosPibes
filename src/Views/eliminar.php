@@ -3,21 +3,32 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-if (session_status() === PHP_SESSION_NONE) {
+// Verifica si la sesión ya ha sido iniciada
+if (session_status() === PHP_SESSION_NONE) { 
     session_start();
 }
 
-// Llamo al archivo de la clase de conexión
 require_once __DIR__ . '/../ConectionBD/CConection.php';
-
-// Llamo al archivo de las peticiones SQL
 require_once __DIR__ . '/../Model/peticionesSql.php';
 
 class EliminarEmpleado {
     private $conn;
 
-    public function __construct($conn) {
+    // Constructor opcionalmente puede recibir la conexión
+    public function __construct($conn = null) {
+        if ($conn !== null) {
+            $this->setConn($conn);
+        }
+    }
+
+    // Setter para la conexión
+    public function setConn($conn) {
         $this->conn = $conn;
+    }
+
+    // Getter para la conexión
+    public function getConn() {
+        return $this->conn;
     }
 
     /**
@@ -26,12 +37,8 @@ class EliminarEmpleado {
      * @return bool
      */
     public function deshabilitarPorId($idEmpleado) {
-        /**
-         * En PHP, para usar una variable global dentro de un método, 
-         * debes declararla como "global" dentro del método.
-         */
         global $eliminarEmpleado; // Trae la variable desde peticionesSql.php
-        $stmt = $this->conn->prepare($eliminarEmpleado);
+        $stmt = $this->getConn()->prepare($eliminarEmpleado);
         if ($stmt) {
             $stmt->bind_param("i", $idEmpleado);
             $result = $stmt->execute();
@@ -45,11 +52,13 @@ class EliminarEmpleado {
 // Instancio la clase y obtengo la conexión
 $conectarDB = new ConectionDB();
 $conn = $conectarDB->getConnection();
-// Verifico si se ha enviado el ID del empleado a eliminar
+
+$eliminador = new EliminarEmpleado();
+$eliminador->setConn($conn);
+
 $idEmpleado = $_GET['id_empleado'] ?? $_POST['id_empleado'] ?? null;
-// Verifico si el ID del empleado no está vacío
+
 if ($idEmpleado) {
-    $eliminador = new EliminarEmpleado($conn);
     if ($eliminador->deshabilitarPorId($idEmpleado)) {
         echo "<script>alert('Empleado eliminado con éxito'); window.location='listado.php';</script>";
     } else {

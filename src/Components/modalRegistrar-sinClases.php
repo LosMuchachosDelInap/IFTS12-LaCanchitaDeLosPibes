@@ -4,13 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Llamo al archivo de la clase de conexión (lo requiero para poder instanciar la clase)
-require_once __DIR__ . '/../ConectionBD/CConection.php';
-
-// Llamo al archivo de las peticiones SQL
-require_once __DIR__ . '/../Model/peticionesSql.php';
-
-// Llamo al archivo de la clase de registro de usuario|
-require_once __DIR__ . '/../Controllers/RegistrarUsuario.php';
+require_once 'src/ConectionBD/CConection.php';
 
 // Instanciao la clase
 $conectarDB = new ConectionDB();
@@ -18,13 +12,9 @@ $conectarDB = new ConectionDB();
 // Obtengo la conexión
 $conn = $conectarDB->getConnection();
 
-// Creo un Objeto de la clase RegistroUsuario
-$registro = new RegistroUsuario($conn);
+// Llamo al archivo de las peticiones SQL
+require_once 'src/Model/peticionesSql.php';
 
-// Declaro las variables globales para poder usarlas ya que se encuentran en otro archivo
-global $crearPersonaQuery;
-global $crearUsuarioQuery;
-global $crearEmpleadoQuery;
 ?>
 
 <!-- Modal Registrar-->
@@ -73,9 +63,9 @@ global $crearEmpleadoQuery;
                     <select name="rol" class="form-select btn btn-secondary" style="width: auto;">
                       <?php
                       $listarRoles = mysqli_query($conn, $listarRol);
-                      while ($row = mysqli_fetch_array($listarRoles)) : ?>
+                      while ($row = mysqli_fetch_array($listarRoles)) { ?>
                         <option value="<?php echo $row["id_roles"] ?>"><?php echo $row["rol"] ?></option>
-                      <?php endwhile; ?>
+                      <?php } ?>
                     </select>
                     <!-- LISTA DESPLEGABLE CARGOS --------------------------------------->
                   </div>
@@ -94,42 +84,28 @@ global $crearEmpleadoQuery;
               // si se hace click en el boton de crear empleado
               // se ejecuta la consulta de crear empleado
               if (isset($_POST['crearEmpleado'])) {
-                // Tomar datos del formulario
-                /*$id_Rol = $_POST['rol'] ?? null;
-                $email = $_POST['email'] ?? '';
-                $clave = $_POST['clave'] ?? '';
-                $apellido = $_POST['apellido'] ?? '';
-                $nombre = $_POST['nombre'] ?? '';
-                $edad = $_POST['edad'] ?? '';
-                $dni = $_POST['dni'] ?? '';
-                $telefono = $_POST['telefono'] ?? '';*/
+                $id_Rol = $_POST['rol'] ?? null;
+                $ingresarPersona = mysqli_query($conn, $crearPersona);
+                mysqli_stmt_bind_param($stmt, "sssss", $apellido, $nombre, $dni, $edad, $telefono);
+                mysqli_stmt_execute($stmt);
+                $idPersonaObtenido = mysqli_insert_id($conn);
 
-                echo "<script>console.log('Antes del if de idPersonaObtenido');</script>";
-                // Obtengo el id de la persona y el id del usuario
-                // y los guardo en variables
-                $idPersonaObtenido = $registro->crearPersona($apellido, $nombre, $edad, $dni, $telefono, $crearPersonaQuery);
-                $idUsuarioObtenido = $registro->crearUsuario($idPersonaObtenido, $email, $clave, $crearUsuarioQuery);
+                if (isset($idPersonaObtenido)) {
 
-                echo "<pre>";
-                echo "POST rol: ";
-                var_dump($_POST['rol']);
-                echo "id_Rol: ";
-                var_dump($rol);
-                echo "idUsuarioObtenido: ";
-                var_dump($idUsuarioObtenido);
-                echo "</pre>";
+                  $clave = $_POST['clave'];
+                  $hashed_password = password_hash($clave, PASSWORD_DEFAULT);
+                  // $registrarPersonaQuery = "INSERT INTO usuario (id_persona, email, clave) VALUES (?, ?, ?)";
+                  $stmt = mysqli_prepare($conn, $registrarPersonaQuery);
+                  mysqli_stmt_bind_param($stmt, "iss", $idPersonaObtenido, $email, $hashed_password);
+                  mysqli_stmt_execute($stmt);
 
-                if ($idPersonaObtenido) {
-                  echo "<script>console.log('Entró al if: idPersonaObtenido tiene valor:');</script>";
-                  echo "<script>console.log('idPersonaObtenido: $idPersonaObtenido');</script>";
-                  // $idUsuarioObtenido = $registro->crearUsuario($idPersonaObtenido, $email, $clave, $crearUsuarioQuery);
+                  $idUsuarioObtenido = mysqli_insert_id($conn);
 
-                  if ($rol && $idUsuarioObtenido) {
-                    echo "<script>console.log('Entró al if: id_Rol && idUsuarioObtenido tiene valor:');</script>";
-                    echo "<script>console.log('idPersonaObtenido: $idUsuarioObtenido');</script>";
-                    echo "<script>console.log('id_Rol: $rol');</script>";
-
-                    $registro->crearEmpleado($rol, $idPersonaObtenido, $idUsuarioObtenido, $crearEmpleadoQuery);
+                  if (isset($id_Rol)) {
+                    // $crearEmpleado = "INSERT INTO empleado (id_rol,id_persona,id_usuario) VALUES (?,?,?)";
+                    $stmt = mysqli_prepare($conn, $crearEmpleado);
+                    mysqli_stmt_bind_param($stmt, "iii", $id_Rol, $idPersonaObtenido, $idUsuarioObtenido);
+                    mysqli_stmt_execute($stmt);
                   }
                   echo "<script>alert('Usuario creado exitosamente');</script>";
                 } else {

@@ -27,8 +27,8 @@ global $crearUsuarioQuery;
 global $crearEmpleadoQuery;
 ?>
 
-<!-- Modal Registrar-->
-<div class="modal fade " id="modalRegistrar" tabindex="-1" aria-labelledby="modalRegistrarLabel" aria-hidden="true">
+<!-- Modal Modificar-->
+<div class="modal fade " id="modalModificar" tabindex="-1" aria-labelledby="modalModificarLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
