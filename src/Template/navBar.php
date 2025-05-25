@@ -30,8 +30,8 @@
           Registrate
         </button>
       <?php } else { ?><!--cambiar la ruta en casa-->
-        <a class="btn btn-danger" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/cerrarSesision.php"><!-- PARA USAR EN EL TRABAJO-->
-          <!--<a class="btn btn-danger" href="../Controllers/cerrarSesision.php"> PARA USAR EN CASA-->
+        <!--<a class="btn btn-danger" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/cerrarSesion.php">--><!-- PARA USAR EN EL TRABAJO-->
+          <a class="btn btn-danger" href="/src/Controllers/cerrarSesion.php"> <!--PARA USAR EN CASA-->
           <i class="bi bi-box-arrow-right"></i>
         </a>
       <?php } ?>
@@ -69,7 +69,7 @@
           <!--<a href="<?php
                         //echo dirname($_SERVER['PHP_SELF']) . '../../../index.php'; 
                         ?>" class="bg-dark text-white text-decoration-none">Home</a>--> <!--USAR EN EL TRABAJO-->
-          <a href="../src/index.php" class="bg-dark text-white text-decoration-none">Home</a> <!--USAR EN casa-->
+          <a href="/index.php" class="bg-dark text-white text-decoration-none">Home</a> <!--USAR EN casa-->
         </li>
         <!--SE MUESTRA SEGUN ROL-->
         <?php require_once __DIR__ . '/../Controllers/navBarListGroup.php'; ?>

@@ -81,25 +81,30 @@ if ($rol !== 'Administrador' && $rol !== 'Dueño') {
                 // se ejecuta la consulta de crear empleado
                 if (isset($_POST['crearEmpleado'])) {
                   $id_Rol = $_POST['rol'] ?? null;
-                  $ingresarPersona = mysqli_query($conn, $crearPersona);
+
+                  // Insertar persona correctamente
+                  $stmt = mysqli_prepare($conn, $crearPersonaQuery);
+                  mysqli_stmt_bind_param($stmt, "ssiss", $_POST['apellido'], $_POST['nombre'], $_POST['edad'], $_POST['dni'], $_POST['telefono']);
+                  mysqli_stmt_execute($stmt);
                   $idPersonaObtenido = mysqli_insert_id($conn);
+                  mysqli_stmt_close($stmt);
 
-                  if (isset($idPersonaObtenido)) {
-
+                  if ($idPersonaObtenido) {
                     $clave = $_POST['clave'];
                     $hashed_password = password_hash($clave, PASSWORD_DEFAULT);
                     $registrarPersonaQuery = "INSERT INTO usuario (id_persona, email, clave) VALUES (?, ?, ?)";
                     $stmt = mysqli_prepare($conn, $registrarPersonaQuery);
-                    mysqli_stmt_bind_param($stmt, "iss", $idPersonaObtenido, $email, $hashed_password);
+                    mysqli_stmt_bind_param($stmt, "iss", $idPersonaObtenido, $_POST['email'], $hashed_password);
                     mysqli_stmt_execute($stmt);
-
                     $idUsuarioObtenido = mysqli_insert_id($conn);
+                    mysqli_stmt_close($stmt);
 
-                    if (isset($id_Rol)) {
-                      $crearEmpleado = "INSERT INTO empleado (id_rol,id_persona,id_usuario) VALUES (?,?,?)";
+                    if ($id_Rol) {
+                      $crearEmpleado = "INSERT INTO empleado (id_rol, id_persona, id_usuario) VALUES (?, ?, ?)";
                       $stmt = mysqli_prepare($conn, $crearEmpleado);
                       mysqli_stmt_bind_param($stmt, "iii", $id_Rol, $idPersonaObtenido, $idUsuarioObtenido);
                       mysqli_stmt_execute($stmt);
+                      mysqli_stmt_close($stmt);
                     }
                     echo "<script>alert('Usuario creado exitosamente');</script>";
                   } else {
