@@ -18,11 +18,13 @@ $conn = $conectarDB->getConnection();
 
 <?php include_once("src/Template/head.php"); ?>
 
-<body>
+<body style="flex:1;">
       <div>
             <?php include_once("src/Template/navBar.php"); ?>
       </div>
+<div class="centrar">
 
+</div>
 
       <?php include_once("src/Template/footer.php"); ?>
 
