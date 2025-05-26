@@ -39,6 +39,7 @@ body {
 }
 
 .iconos-redes-sociales a {
+    color: rgb(13, 110, 253);
     width: 40px;
     height: 40px;
     display: flex;
@@ -50,7 +51,27 @@ body {
     border-radius: 50%;
     transition: all 0.2s ease-in; 
 }
+
+.iconos-redes-sociales button {
+    color: rgb(13, 110, 253);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding: 2px;
+    margin: 15px;
+    border: 2px solid Black;
+    border-radius: 50%;
+    transition: all 0.2s ease-in; 
+}
+
 .iconos-redes-sociales a:hover {
+background-color: black;
+border: 2px solid rgb(13, 110, 253);
+}
+
+.iconos-redes-sociales button:hover {
 background-color: black;
 border: 2px solid rgb(13, 110, 253);
 }

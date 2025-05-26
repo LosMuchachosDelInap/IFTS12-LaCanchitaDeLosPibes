@@ -48,7 +48,7 @@
       <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
         Bienvenido:
         <?php
-        echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8') : 'Inicie Secion';
+        echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8') : 'Inicie Sesion';
         echo ' / ';
         echo isset($_SESSION['nombre_rol']) ? htmlspecialchars($_SESSION['nombre_rol'], ENT_QUOTES, 'UTF-8') : '';
         ?>

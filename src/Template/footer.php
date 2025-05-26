@@ -14,9 +14,12 @@
             <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
                 <i class="bi bi-linkedin"></i>
             </a>
-            <a href="mailto: losmuchachosdelinapifts@gmail.com/" target="_blank" rel="noopener noreferrer">
+           <!-- <a href="mailto: losmuchachosdelinapifts@gmail.com/" target="_blank" rel="noopener noreferrer">
                 <i class="bi bi-envelope"></i>
-            </a>
+            </a>-->
+            <button type="button" data-bs-toggle="modal" data-bs-target="#modalContactos">
+                <i class="bi bi-envelope"></i>
+            </button>
         </div>
     </footer>
 </div>

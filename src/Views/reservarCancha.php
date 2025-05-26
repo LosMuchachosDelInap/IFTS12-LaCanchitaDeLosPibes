@@ -31,6 +31,11 @@ if ($rol !== 'Administrador' && $rol !== 'Dueño') {
   exit;
 }
 require_once __DIR__ . '/../Controllers/ReservarCanchaController.php';
+// Asegúrate de que el archivo ReservarCanchaController.php define la clase ReservarCanchaController
+
+if (!class_exists('ReservarCanchaController')) {
+    die('Error: La clase ReservarCanchaController no está definida. Verifica el nombre de la clase y el archivo.');
+}
 
 // Canchas fijas
 $canchas = [
