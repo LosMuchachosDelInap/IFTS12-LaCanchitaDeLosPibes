@@ -67,17 +67,7 @@ global $crearEmpleadoQuery;
                 <div class="p-2 bg-light border">
                   <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">Telefono</span>
-                    <input type="text" name="telefono" class="form-control" id="registrarTelefono" aria-label="telefono" aria-describedby="basic-addon1">
-                    <!-- LISTA DESPLEGABLE CARGAOS --------------------------------------->
-                    <span class="input-group-text" id="basic-addon1">Cargo a desempeñar</span>
-                    <select name="rol" class="form-select btn btn-secondary" style="width: auto;">
-                      <?php
-                      $listarRoles = mysqli_query($conn, $listarRol);
-                      while ($row = mysqli_fetch_array($listarRoles)) : ?>
-                        <option value="<?php echo $row["id_roles"] ?>"><?php echo $row["rol"] ?></option>
-                      <?php endwhile; ?>
-                    </select>
-                    <!-- LISTA DESPLEGABLE CARGOS --------------------------------------->
+                    <input type="text" name="telefono" class="form-control" id="registrarTelefono" aria-label="telefono" aria-describedby="basic-addon1">                             
                   </div>
                 </div>
                 <!--BOTON REGISTRAR USUARIO-->
@@ -93,17 +83,7 @@ global $crearEmpleadoQuery;
               // crear empleado
               // si se hace click en el boton de crear empleado
               // se ejecuta la consulta de crear empleado
-              if (isset($_POST['crearEmpleado'])) {
-                // Tomar datos del formulario
-                /*$id_Rol = $_POST['rol'] ?? null;
-                $email = $_POST['email'] ?? '';
-                $clave = $_POST['clave'] ?? '';
-                $apellido = $_POST['apellido'] ?? '';
-                $nombre = $_POST['nombre'] ?? '';
-                $edad = $_POST['edad'] ?? '';
-                $dni = $_POST['dni'] ?? '';
-                $telefono = $_POST['telefono'] ?? '';*/
-
+              if (isset($_POST['crearEmpleado'])) {           
                 echo "<script>console.log('Antes del if de idPersonaObtenido');</script>";
                 // Obtengo el id de la persona y el id del usuario
                 // y los guardo en variables

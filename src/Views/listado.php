@@ -23,7 +23,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   exit;
 }
 
-// Verifica si el rol NO es ni Administrador ni Dueño
+// Verifica si el rol NO es Administrador ni Dueño
 $rol = $_SESSION['nombre_rol'] ?? '';
 if ($rol !== 'Administrador' && $rol !== 'Dueño') {
   header('Location: ../Views/noAutorizado.php');
@@ -163,7 +163,9 @@ if ($rol !== 'Administrador' && $rol !== 'Dueño') {
     </div>
   </div>
 
-  <?php include_once __DIR__ . '/../Template/footer.php';
+  <?php 
+   include_once __DIR__ . '/../Template/footer.php';
+   include_once __DIR__ . '/../Components/modalContactos.php';
   ?>
 </body>
 
