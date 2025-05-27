@@ -18,7 +18,7 @@
       <div class="col-4 d-flex justify-content-center">
         <a class="navbar-brand mx-auto" href="index.php">
           <figure class="m-0">
-            <img src="src/Public/Logo.png" alt="La canchita de los pibes" width="50" height="50" class="d-inline-block align-text-top">
+            <img src="src/Public/icono.png" alt="La canchita de los pibes" width="60" height="60" class="d-inline-block align-text-top">
           </figure>
         </a>
       </div>
