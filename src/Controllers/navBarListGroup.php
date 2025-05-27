@@ -12,5 +12,5 @@ $rol = $_SESSION['nombre_rol'] ?? '';
         <li class="list-group-item bg-dark text-white">Reservar cancha</li>
 <?php elseif ($rol !== 'Administrador' || $rol !== 'Dueño'): ?>
     <!--SI NO ES ADMINISTRADOR NI DUEÑO-->
-    <li class="list-group-item bg-dark text-white">Reservar cancha</li>
+    <li class="list-group-item bg-dark text-white"> <a href="/src/Views/reservarCancha.php" class="list-group-item">Reservar cancha</a><!-- PARA USAR EN CASA--></li>
 <?php endif; ?>
