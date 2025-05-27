@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                           <p><b>Consulta:</b><br>$mensaje</p>";
 
         $mail->send();
-        echo "<div class='alert alert-success'>¡Consulta enviada correctamente!</div>";
+        echo "<div class='alert alert-success'>¡Consulta enviada correctamente!,te estaremos contactando a la brevedad.</div>";
     } catch (Exception $e) {
         echo "<div class='alert alert-danger'>Error al enviar la consulta: {$mail->ErrorInfo}</div>";
     }

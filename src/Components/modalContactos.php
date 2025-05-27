@@ -7,6 +7,7 @@
       </div>
       <div class="modal-body">
         <form method="post" action="/src/Controllers/contacto.php">
+          <div id="contacto-mensaje"></div>
           <div class="mb-3">
             <label for="usuario" class="col-form-label text-dark text-start">Usuario</label>
             <input type="email" name="email" class="form-control" id="usuario"
@@ -26,3 +27,31 @@
     </div>
   </div>
 </div>
+<!-- Mensajes de error sin recargar la pagina-->
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('#modalContactos form');
+  const mensajeDiv = document.getElementById('contacto-mensaje');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+      mensajeDiv.innerHTML = data;
+      if (data.includes('alert-success')) {
+        form.querySelector('textarea').value = '';
+      }
+    })
+    .catch(error => {
+      mensajeDiv.innerHTML = "<div class='alert alert-danger'>Error de conexión.</div>";
+    });
+  });
+});
+</script>
