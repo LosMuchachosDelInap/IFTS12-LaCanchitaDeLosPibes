@@ -1,40 +1,42 @@
 <!-- Example Code Start-->
 <nav class="navbar navbar-dark bg-dark fixed-top">
-  <div class="container-fluid d-flex align-items-center justify-content-between">
-    <!-- Botón menú lateral -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasDarkNavbar"
-      aria-controls="offcanvasDarkNavbar"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Título centrado -->
-    <a class="navbar-brand text-white mx-auto" href="index.php">Proyecto La canchita de los pibes</a>
-
-    <!-- Botones de usuario a la derecha -->
-    <div class="ms-auto d-flex align-items-center">
-
-      <!--
-      Esta porcion de codigo es para que el boton de ingresar y registrate se vea en la parte superior derecha
-      si no hay nadie logueado, si hay alguien logueado se ve el boton de cerrar sesion. 
-      -->
-      <?php if (!isset($_SESSION['email']) || empty($_SESSION['email'])) { ?>
-        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalLoguin">
-          Ingresar
+  <div class="container-fluid">
+    <div class="row w-100 align-items-center">
+      <!-- Columna izquierda: menú lateral -->
+      <div class="col-4 d-flex">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasDarkNavbar"
+          aria-controls="offcanvasDarkNavbar"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
-        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalRegistrar">
-          Registrate
-        </button>
-      <?php } else { ?><!--cambiar la ruta en casa-->
-        <!--<a class="btn btn-danger" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/cerrarSesion.php">--><!-- PARA USAR EN EL TRABAJO-->
-          <a class="btn btn-danger" href="/src/Controllers/cerrarSesion.php"> <!--PARA USAR EN CASA-->
-          <i class="bi bi-box-arrow-right"></i>
+      </div>
+      <!-- Columna central: logo -->
+      <div class="col-4 d-flex justify-content-center">
+        <a class="navbar-brand mx-auto" href="index.php">
+          <figure class="m-0">
+            <img src="src/Public/Logo.png" alt="La canchita de los pibes" width="50" height="50" class="d-inline-block align-text-top">
+          </figure>
         </a>
-      <?php } ?>
+      </div>
+      <!-- Columna derecha: botones usuario -->
+      <div class="col-4 d-flex justify-content-end align-items-center">
+        <?php if (!isset($_SESSION['email']) || empty($_SESSION['email'])) { ?>
+          <button type="button" class="btn btn-outline-dark bg-white me-2" data-bs-toggle="modal" data-bs-target="#modalLoguin">
+            Ingresar
+          </button>
+          <button type="button" class="btn btn-outline-dark bg-white" data-bs-toggle="modal" data-bs-target="#modalRegistrar">
+            Registrate
+          </button>
+        <?php } else { ?>
+          <a class="btn btn-danger" href="/src/Controllers/cerrarSesion.php">
+            <i class="bi bi-box-arrow-right"></i>
+          </a>
+        <?php } ?>
+      </div>
     </div>
   </div>
 
