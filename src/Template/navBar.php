@@ -16,9 +16,9 @@
       </div>
       <!-- Columna central: logo -->
       <div class="col-4 d-flex justify-content-center">
-        <a class="navbar-brand mx-auto" href="index.php">
+        <a class="navbar-brand mx-auto" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php">
           <figure class="m-0">
-            <img src="src/Public/icono.png" alt="La canchita de los pibes" width="60" height="60" class="d-inline-block align-text-top">
+            <img src="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Public/Icono.png" alt="Cartoon soccer field with children playing and the text La canchita de los pibes in a cheerful and welcoming style" width="60" height="60" class="d-inline-block align-text-top">
           </figure>
         </a>
       </div>
@@ -32,8 +32,8 @@
             Registrate
           </button>
         <?php } else { ?>
-        <!--SI ESTA LOGUIEADO MUESTRA EL BOTON DE CERRAR SESION-->
-          <a class="btn btn-danger" href="/src/Controllers/cerrarSesion.php">
+          <!--SI ESTA LOGUIEADO MUESTRA EL BOTON DE CERRAR SESION-->
+          <a class="btn btn-danger" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/cerrarSesion.php">
             <i class="bi bi-box-arrow-right"></i>
           </a>
         <?php } ?>
@@ -69,10 +69,8 @@
         <li class="list-group-item bg-dark text-white">
           <!-- esta porcion de codigo "dirname($_SERVER['PHP_SELF'])" inserta la ruta hasta donde esta el proyecto 
        ejemplo: http://localhost/Mis%20proyectos/IFTS12-lacanchitadelospibes , luego colocamos la ruta que falta hasta el archivo-->
-          <!--<a href="<?php
-                        //echo dirname($_SERVER['PHP_SELF']) . '../../../index.php'; 
-                        ?>" class="bg-dark text-white text-decoration-none">Home</a>--> <!--USAR EN EL TRABAJO-->
-          <a href="/index.php" class="bg-dark text-white text-decoration-none">Home</a> <!--USAR EN casa-->
+          <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '../../../index.php'; ?>" class="bg-dark text-white text-decoration-none">Home</a> <!--USAR EN EL TRABAJO-->
+          <!--<a href="/index.php" class="bg-dark text-white text-decoration-none">Home</a>--> <!--USAR EN casa-->
         </li>
         <!--SE MUESTRA SEGUN ROL-->
         <?php require_once __DIR__ . '/../Controllers/navBarListGroup.php'; ?>
