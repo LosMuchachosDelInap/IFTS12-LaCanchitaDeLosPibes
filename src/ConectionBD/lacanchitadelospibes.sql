@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `lacanchitadelospibes`
 --
-CREATE DATABASE `lacanchitadelospibes`;
+--CREATE DATABASE `lacanchitadelospibes`;
 -- --------------------------------------------------------
 
 --
