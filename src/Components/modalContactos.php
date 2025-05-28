@@ -6,8 +6,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!--<form method="post" action="/src/Controllers/contacto.php">--> <!-- para usar en casa -->
-       <form method="post" action="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/contacto.php"> <!-- para usar en EL TRABAJO -->
+        <form method="post" action="/src/Controllers/contacto.php"> <!-- para usar en casa -->
+       <!-- <form method="post" action="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/contacto.php"> --><!-- para usar en EL TRABAJO -->
           <div id="contacto-mensaje"></div>
           <div class="mb-3">
             <?php

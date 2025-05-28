@@ -16,9 +16,11 @@
       </div>
       <!-- Columna central: logo -->
       <div class="col-4 d-flex justify-content-center">
-        <a class="navbar-brand mx-auto" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php">
+        <!--<a class="navbar-brand mx-auto" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php"><!-- USAR EN EL TRABAJO -->
+        <a class="navbar-brand mx-auto" href="/index.php"><!-- USAR EN CASA -->
           <figure class="m-0">
-            <img src="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Public/Icono.png" alt="Cartoon soccer field with children playing and the text La canchita de los pibes in a cheerful and welcoming style" width="60" height="60" class="d-inline-block align-text-top">
+            <!--<img src="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Public/Logo.png" alt="Cartoon soccer field with children playing and the text La canchita de los pibes in a cheerful and welcoming style" width="60" height="60" class="d-inline-block align-text-top">--> <!--USAR EN EL TRABAJO-->
+            <img src="/src/Public/Logo.png" width="60" height="60" alt="Cartoon soccer field with children playing and the text La canchita de los pibes in a cheerful and welcoming style"> <!--USAR EN CASA-->
           </figure>
         </a>
       </div>
@@ -33,7 +35,8 @@
           </button>
         <?php } else { ?>
           <!--SI ESTA LOGUIEADO MUESTRA EL BOTON DE CERRAR SESION-->
-          <a class="btn btn-danger" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/cerrarSesion.php">
+         <!-- <a class="btn btn-danger" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/cerrarSesion.php">--> <!--USAR EN EL TRABAJO-->
+          <a class="btn btn-danger" href="/src/Controllers/cerrarSesion.php"> <!--USAR EN CASA-->
             <i class="bi bi-box-arrow-right"></i>
           </a>
         <?php } ?>

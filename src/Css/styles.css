@@ -99,3 +99,8 @@ color: white
   border-radius: 0;
   padding: 0;
 }
+
+.navbar,
+.container-fluid {
+  padding: 0 !important;
+}
