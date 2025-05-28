@@ -24,7 +24,7 @@
       </div>
       <!-- Columna derecha: botones usuario -->
       <div class="col-4 d-flex justify-content-end align-items-center">
-        <?php if (!isset($_SESSION['email']) || empty($_SESSION['email'])) { ?>
+        <?php if (!isset($_SESSION['email']) || empty($_SESSION['email'])) { ?><!-- VERIFICA SI ESTA LOGUEADO/ SI NO LO ESTA, MUESTRA LOS DOS BOTONES-->
           <button type="button" class="btn btn-outline-dark bg-white me-2" data-bs-toggle="modal" data-bs-target="#modalLoguin">
             Ingresar
           </button>
@@ -32,6 +32,7 @@
             Registrate
           </button>
         <?php } else { ?>
+        <!--SI ESTA LOGUIEADO MUESTRA EL BOTON DE CERRAR SESION-->
           <a class="btn btn-danger" href="/src/Controllers/cerrarSesion.php">
             <i class="bi bi-box-arrow-right"></i>
           </a>

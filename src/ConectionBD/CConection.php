@@ -1,33 +1,43 @@
 <?php
-/*clase para la base de datos*/
+// filepath: c:\xampp\htdocs\Mis proyectos\IFTS12-LaCanchitaDeLosPibes\src\ConectionBD\CConection.php
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
 class ConectionDB
 {
-    private $host = 'localhost';
-    private $username = 'root';
-    private $password = '';
-    private $dbname = 'lacanchitadelospibes';
-    private $conn; // Variable para la conexión a la base de datos
-    private $charset = 'utf8mb4'; // Codificación de caracteres de la base de datos
+    private $host;
+    private $username;
+    private $password;
+    private $dbname;
+    private $conn;
+    private $charset;
 
-    public function __construct() /* "metodo" de coneccion a la base de datos*/
+    public function __construct()
     {
+        // Cargar variables de entorno solo una vez
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+        $dotenv->load();
+
+        $this->host     = $_ENV['DB_HOST'];
+        $this->username = $_ENV['DB_USERNAME'];
+        $this->password = $_ENV['DB_PASSWORD'];
+        $this->dbname   = $_ENV['DB_NAME'];
+        $this->charset  = $_ENV['DB_CHARSET'] ?? 'utf8mb4';
+
         $this->conn = new mysqli(
-            $this->host, // Host de la base de datos
-            $this->username, // Usuario de la base de datos
-            $this->password, // Contraseña de la base de datos
-            $this->dbname // Nombre de la base de datos
+            $this->host,
+            $this->username,
+            $this->password,
+            $this->dbname
         );
 
-        // Usar el charset definido
         $this->conn->set_charset($this->charset);
 
-        // Verificar si la conexión fue exitosa
-        // Si hay un error de conexión, se muestra un mensaje de error en la consola del navegador
         if ($this->conn->connect_error) {
-            // Mensaje de error en consola del navegador
             echo "<script>console.error('Error de conexión: " . addslashes($this->conn->connect_error) . "');</script>";
         } else {
-            // Mensaje de éxito en consola del navegador
             echo "<script>console.log('Conexión exitosa a la base de datos');</script>";
         }
     }

@@ -2,7 +2,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <div class="alert alert-dark text-center" role="alert">
-    <footer class="seccion-oscura d-flex flex-column align-items-center justify-content-center">
+<?php
+
+?>
+<footer class="seccion-oscura d-flex flex-column align-items-center justify-content-center">
         <p class="footer-texto text-center"> Sitio Web desarrollado por Los Muchachos del Inap.</p>
         <div class="iconos-redes-sociales d-flex flex-wrap justify-content-center">
             <a href="https://github.com/LosMuchachosDelInap/IFTS12-LaCanchitaDeLosPibes" target="_blank" rel="noopener noreferrer">
