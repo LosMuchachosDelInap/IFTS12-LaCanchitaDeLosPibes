@@ -18,16 +18,15 @@ $conn = $conectarDB->getConnection();
 
 <?php include_once("src/Template/head.php"); ?>
 
-<body style="flex:1;">
-      <div>
-            <?php include_once("src/Template/navBar.php"); ?>
+<body>
+      <?php include_once("src/Template/navBar.php"); ?>
+
+      <div class="centrar">
+            <!--contenido central de la pagina-->
       </div>
-<div class="centrar">
-
+<div class="footer">
+     <?php include_once("src/Template/footer.php"); ?>
 </div>
-
-      <?php include_once("src/Template/footer.php"); ?>
-
       <?php
       include_once("src/Components/modalLoguin.php");
       include_once("src/Components/modalRegistrar.php");
