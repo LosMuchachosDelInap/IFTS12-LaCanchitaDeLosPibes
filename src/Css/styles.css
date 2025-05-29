@@ -28,10 +28,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
- /* background-image: url(../Public/Fondo.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;*/
   width: 100%;
   min-height: 0; /* Importante para que flexbox funcione bien */
   padding-bottom: 10px;
@@ -49,6 +45,7 @@ body {
   padding: 5px;
   margin-bottom: 5px;
   margin-top: auto; /* Esto empuja el footer al fondo */
+  color: rgb(7, 128, 43);
 }
 
 footer,
@@ -57,14 +54,17 @@ footer,
   box-shadow: 0 0 10px green;
   transition: all 0.3s ease-in-out;
   background-color: transparent !important;
-  color: #f30a0a; /* O el color de texto que prefieras */ 
 }
 
 footer:hover,
 .footer:hover {
   box-shadow: 0 0 40px green;
 }
-
+.email {
+  color: rgb(13, 110, 253);
+  text-decoration: none;
+  font-weight: bold;
+}
 .iconos-redes-sociales a {
   color: rgb(13, 110, 253);
   width: 40px;
@@ -77,38 +77,17 @@ footer:hover,
   border: 2px solid Black;
   border-radius: 50%;
   transition: all 0.2s ease-in;
-}
 
-.iconos-redes-sociales button {
-  color: rgb(13, 110, 253);
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px;
-  margin: 15px;
-  border: 2px solid Black;
-  border-radius: 50%;
-  transition: all 0.2s ease-in;
 }
 
 .iconos-redes-sociales a:hover {
   background-color: black;
   border: 2px solid rgb(13, 110, 253);
-}
-
-.iconos-redes-sociales button:hover {
-  background-color: black;
-  border: 2px solid rgb(13, 110, 253);
+ 
 }
 
 .iconos-redes-sociales a :hover i {
   color: white;
-}
-.fixed-bottom {
-  display: block !important;
-  z-index: 9999;
 }
 
 .navbar,
@@ -120,9 +99,58 @@ footer:hover,
   background-color: transparent !important;
   box-shadow: 0 0 10px green;
   transition: all 0.3s ease-in-out;
+
 }
 
 .navbar:hover {
   box-shadow: 0 0 40px green;
 }
+.navbar-toggler {
+  position: relative;
+  z-index: 2;
+  box-shadow:
+    0 0 10px 4px #00ff99,   /* verde agua */
+    0 0 20px 8px #00ccff,   /* celeste */
+    0 0 30px 12px #ff00cc;  /* fucsia */
+  transition: box-shadow 0.3s;
+}
 
+.navbar-toggler:hover {
+  box-shadow:
+    0 0 40px 4px #00ff99,
+    0 0 50px 8px #00ccff,
+    0 0 60px 12px #ff00cc;
+}
+
+.logo-navbar {
+  border-radius: 50%; /* Opcional: hace el logo circular */
+  box-shadow:
+    0 0 10px 4px #00ff99,   /* verde agua */
+    0 0 20px 8px #00ccff,   /* celeste */
+    0 0 30px 12px #ff00cc;  /* fucsia */
+  transition: box-shadow 0.3s;
+}
+
+.logo-navbar:hover {
+  box-shadow:
+    0 0 20px 8px #00ff99,
+    0 0 40px 16px #00ccff,
+    0 0 60px 24px #ff00cc;
+}
+
+.bnt-ingresar,.bnt-registrar {
+  color: white;
+  box-shadow:
+    0 0 10px 4px #00ff99,   /* verde agua */
+    0 0 20px 8px #00ccff,   /* celeste */
+    0 0 30px 12px #ff00cc;  /* fucsia */
+  transition: box-shadow 0.3s;
+}
+
+.bnt-ingresar:hover,
+.bnt-registrar:hover {
+  box-shadow:
+    0 0 20px 8px #00ff99,
+    0 0 40px 16px #00ccff,
+    0 0 60px 24px #ff00cc;
+}

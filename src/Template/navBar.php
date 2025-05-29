@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="row w-100 align-items-center">
       <!-- Columna izquierda: menú lateral -->
-      <div class="col-4 d-flex">
+      <div class="col-4 d-flex p-3">
         <button
           class="navbar-toggler"
           type="button"
@@ -20,17 +20,17 @@
         <a class="navbar-brand mx-auto" href="/index.php"><!-- USAR EN CASA -->
           <figure class="m-0">
             <!--<img src="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Public/Logo.png" alt="Cartoon soccer field with children playing and the text La canchita de los pibes in a cheerful and welcoming style" width="60" height="60" class="d-inline-block align-text-top">--> <!--USAR EN EL TRABAJO-->
-            <img src="/src/Public/Logo.png" width="60" height="60" alt="Cartoon soccer field with children playing and the text La canchita de los pibes in a cheerful and welcoming style"> <!--USAR EN CASA-->
+            <img src="/src/Public/Logo_2.png" class="logo-navbar" width="60" height="60" alt="Cartoon soccer field with children playing and the text La canchita de los pibes in a cheerful and welcoming style"> <!--USAR EN CASA-->
           </figure>
         </a>
       </div>
       <!-- Columna derecha: botones usuario -->
       <div class="col-4 d-flex justify-content-end align-items-center">
         <?php if (!isset($_SESSION['email']) || empty($_SESSION['email'])) { ?><!-- VERIFICA SI ESTA LOGUEADO/ SI NO LO ESTA, MUESTRA LOS DOS BOTONES-->
-          <button type="button" class="btn btn-outline-dark bg-white me-2" data-bs-toggle="modal" data-bs-target="#modalLoguin">
+          <button type="button" class="btn me-2 bnt-ingresar" data-bs-toggle="modal" data-bs-target="#modalLoguin">
             Ingresar
           </button>
-          <button type="button" class="btn btn-outline-dark bg-white" data-bs-toggle="modal" data-bs-target="#modalRegistrar">
+          <button type="button" class="btn bnt-registrar" data-bs-toggle="modal" data-bs-target="#modalRegistrar">
             Registrate
           </button>
         <?php } else { ?>

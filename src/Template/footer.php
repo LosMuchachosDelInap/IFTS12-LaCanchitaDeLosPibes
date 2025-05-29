@@ -3,22 +3,22 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <footer>
-        <p class="footer-texto text-center"> Sitio Web desarrollado por Los Muchachos del Inap.</p>
-        <div class="iconos-redes-sociales d-flex flex-wrap justify-content-center">
-            <a href="https://github.com/LosMuchachosDelInap/IFTS12-LaCanchitaDeLosPibes" target="_blank" rel="noopener noreferrer">
-                <i class="bi bi-github"></i>
-            </a>
-            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
-                <i class="bi bi-instagram"></i>
-            </a>
-            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
-                <i class="bi bi-linkedin"></i>
-            </a>
-           <!-- <a href="mailto: losmuchachosdelinapifts@gmail.com/" target="_blank" rel="noopener noreferrer">
+    <p class="footer-texto text-center"> Sitio Web desarrollado por Los Muchachos del Inap.</p>
+    <div class="iconos-redes-sociales d-flex flex-wrap justify-content-center">
+        <a href="https://github.com/LosMuchachosDelInap/IFTS12-LaCanchitaDeLosPibes" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-github"></i>
+        </a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-instagram"></i>
+        </a>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-linkedin"></i>
+        </a>
+        <!-- <a href="mailto: losmuchachosdelinapifts@gmail.com/" target="_blank" rel="noopener noreferrer">
                 <i class="bi bi-envelope"></i>
             </a>-->
-            <button type="button" data-bs-toggle="modal" data-bs-target="#modalContactos">
-                <i class="bi bi-envelope"></i>
-            </button>
-        </div>
-    </footer>
+        <a class="email" type="button" data-bs-toggle="modal" data-bs-target="#modalContactos">
+            <i class="bi bi-envelope"></i>
+        </a>
+    </div>
+</footer>
