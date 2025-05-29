@@ -13,14 +13,13 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
- /* background-color: #333;*/
+ background-image: url(../Public/Fondo.png); /* <-- aquí va la imagen */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: sans-serif;
   color: aliceblue;
   text-align: center;
-}
-.navbar {
-  background-color: transparent !important;
-  box-shadow: none !important; /* Opcional: quita sombra si la hay */
 }
 
 .centrar {
@@ -29,10 +28,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url(../Public/Fondo.png);
+ /* background-image: url(../Public/Fondo.png);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover;*/
   width: 100%;
   min-height: 0; /* Importante para que flexbox funcione bien */
   padding-bottom: 10px;
@@ -50,15 +49,20 @@ body {
   padding: 5px;
   margin-bottom: 5px;
   margin-top: auto; /* Esto empuja el footer al fondo */
-
 }
 
 footer,
-.footer
- {
+.footer {
+   background-color: transparent !important;
+  box-shadow: 0 0 10px green;
+  transition: all 0.3s ease-in-out;
   background-color: transparent !important;
-  color: #f30a0a; /* O el color de texto que prefieras */
-  opacity: 50%; /* Ajusta la opacidad según tus necesidades */
+  color: #f30a0a; /* O el color de texto que prefieras */ 
+}
+
+footer:hover,
+.footer:hover {
+  box-shadow: 0 0 40px green;
 }
 
 .iconos-redes-sociales a {
@@ -112,13 +116,13 @@ footer,
   padding: 0 !important;
 }
 
-.separador {
-    background-image: url(../img/separador.jpg);
-    background-position: top center;
-    background-size: 100% 100%;
-    width: 100%;
-    height: 12px;
-    z-index: 9;
-    position: relative;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+.navbar {
+  background-color: transparent !important;
+  box-shadow: 0 0 10px green;
+  transition: all 0.3s ease-in-out;
 }
+
+.navbar:hover {
+  box-shadow: 0 0 40px green;
+}
+
