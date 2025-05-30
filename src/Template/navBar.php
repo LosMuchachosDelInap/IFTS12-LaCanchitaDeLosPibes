@@ -67,12 +67,12 @@
     </div>
 
     <!--LISTADO DE TABLA LATERAL SEGUN ROL-->
-    <div class="list-group-flush text-start p-3 m-0 border-0 bd-example m-0 border-0">
-      <ul class="list-group list-group-flush bg-dark text-white text-start">
-        <li class="list-group-item bg-dark text-white">
+    <div class="list-group-flush text-start p-3 m-0 border-0 bd-example m-0 border-0  ">
+      <ul class="list-group list-group-flush text-white text-start ">
+        <li class="list-group-item text-white">
           <!-- esta porcion de codigo "dirname($_SERVER['PHP_SELF'])" inserta la ruta hasta donde esta el proyecto 
        ejemplo: http://localhost/Mis%20proyectos/IFTS12-lacanchitadelospibes , luego colocamos la ruta que falta hasta el archivo-->
-          <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '../../../index.php'; ?>" class="bg-dark text-white text-decoration-none">Home</a> <!--USAR EN EL TRABAJO-->
+          <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '../../../index.php'; ?>" class="text-white text-decoration-none">Home</a> <!--USAR EN EL TRABAJO-->
           <!--<a href="/index.php" class="bg-dark text-white text-decoration-none">Home</a>--> <!--USAR EN casa-->
         </li>
         <!--SE MUESTRA SEGUN ROL-->

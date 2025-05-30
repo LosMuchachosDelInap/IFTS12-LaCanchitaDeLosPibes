@@ -10,6 +10,7 @@ body {
 }
 
 body {
+  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -20,10 +21,16 @@ body {
   font-family: sans-serif;
   color: aliceblue;
   text-align: center;
+   margin: 0;
+  padding: 0;
 }
-
+/*----------------------------------------------------------Parte central de la pagina de inicio---------------------------------------------------*/
+/*----------------------------------------------------------Con esto queda el footer abajo---------------------------------------------------*/
 .centrar {
-  flex: 1;
+  padding-top: 20vh; /* Ajusta según tu diseño */
+   flex: 1;
+   overflow-y: auto;
+  max-height: 100vh; /* Ajusta según tu diseño */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +40,7 @@ body {
   padding-bottom: 10px;
   height: auto;
 }
-
+/*----------------------------------------------------------Estilos footer---------------------------------------------------*/
 .footer {
   min-height: 50px;
   width: 100%;
@@ -41,11 +48,15 @@ body {
 }
 
 .footer-texto {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   padding: 5px;
   margin-bottom: 5px;
   margin-top: auto; /* Esto empuja el footer al fondo */
-  color: rgb(7, 128, 43);
+  color: rgb(3, 88, 28);
+  text-shadow:
+    0 0 10px #00ff99,   /* verde agua */
+    0 0 20px #00ccff,   /* celeste */
+    0 0 30px #ff00cc;   /* fucsia */
 }
 
 footer,
@@ -89,7 +100,7 @@ footer:hover,
 .iconos-redes-sociales a :hover i {
   color: white;
 }
-
+/*----------------------------------------------------------Estilos navbar---------------------------------------------------*/
 .navbar,
 .container-fluid {
   padding: 0 !important;
@@ -105,6 +116,16 @@ footer:hover,
 .navbar:hover {
   box-shadow: 0 0 40px green;
 }
+
+
+/* Cambia el color de fondo y la opacidad de la barra lateral */
+.offcanvas.offcanvas-start {
+  background-color: rgba(0, 128, 0, 0.1) !important; /* verde con 50% de opacidad */
+  color: #fff;
+  backdrop-filter: blur(15px); /* Opcional: desenfoque de fondo */
+}
+
+
 .navbar-toggler {
   position: relative;
   z-index: 2;
@@ -138,13 +159,13 @@ footer:hover,
     0 0 60px 24px #ff00cc;
 }
 
-.bnt-ingresar,.bnt-registrar {
+.bnt-ingresar,.bnt-registrar {  
   color: white;
   box-shadow:
     0 0 10px 4px #00ff99,   /* verde agua */
     0 0 20px 8px #00ccff,   /* celeste */
     0 0 30px 12px #ff00cc;  /* fucsia */
-  transition: box-shadow 0.3s;
+ 
 }
 
 .bnt-ingresar:hover,
@@ -153,4 +174,15 @@ footer:hover,
     0 0 20px 8px #00ff99,
     0 0 40px 16px #00ccff,
     0 0 60px 24px #ff00cc;
+}
+
+li {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+/*----------------------------- Modal loguin--------------------------------*/
+.modal-fondo {
+  background-image: url('../Public/FondoModal.webp');
+  background-size: cover;
+  background-position: center;
 }

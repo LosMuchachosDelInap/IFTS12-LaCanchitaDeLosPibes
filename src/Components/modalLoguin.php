@@ -12,11 +12,11 @@ $conn = $conexion->getConnection();
 
 <div class="modal fade" id="modalLoguin" tabindex="-1" aria-labelledby="modalLoguinLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
+        <div class="modal-content ">
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body d-flex justify-content-center">
+            <div class="modal-body d-flex justify-content-center modal-fondo">
                 <div class="card" style="width: 100%; height: auto;">
                     <div class="card-header">
                         <h5 class="card-title text-center">Ingrese Usuario y Contraseña</h5>
