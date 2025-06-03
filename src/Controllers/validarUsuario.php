@@ -3,6 +3,13 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// Define la ruta BASE_URL //
+if (!defined('BASE_URL')) {
+    $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+    $host = $_SERVER['HTTP_HOST'];
+    $carpeta = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+    define('BASE_URL', $protocolo . $host . $carpeta);
+}
 // Inicia la sesión antes de cualquier salida
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -44,15 +51,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // chequea el rol del usuario y redirige a la página correspondiente
                 if (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Dueño') {
-                    header('Location: ../Views/listado.php'); // Redirige a la página de listado
+                    header('Location: ' . BASE_URL . '/Views/listado.php'); // Redirige a la página de listado
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Administrador') {
-                    header('Location: ../Views/listado.php'); // Redirige a la página de listado
+                    header('Location: ' . BASE_URL . '/index.php'); // Redirige a la página de listado
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Bar') {
                     echo '<script>
                         alert("El Usuario: ' . $usuario . ' tiene rol de administrador del Bar del club");
-                       window.location.href = "/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php";
+                       window.location.href = "<?php echo BASE_URL; ?>/index.php";
                     </script>';//--- PARA USAR EN EL TRABAJO*/
                     /*'<script>
                         alert("El Usuario: ' . $usuario . ' tiene rol de administrador del Bar del club");
@@ -62,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Alquiler') {
                     echo '<script>
                         alert("El Usuario: ' . $usuario . ' tiene permisos para manejar los alquileres del club");
-                        window.location.href = "/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php";
+                        window.location.href = "<?php echo BASE_URL; ?>/index.php";
                     </script>';// para usar en el trabajo
                     /*'<script>
                         alert("El Usuario: ' . $usuario . ' tiene permisos para manejar los alquileres del club");
@@ -72,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Estacionamiento') {
                     echo '<script>
                         alert("El Usuario: ' . $usuario . ' tiene permiso para manejar el estacionamiento del club");
-                        window.location.href = "/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php";
+                        window.location.href = "<?php echo BASE_URL; ?>/index.php";
                     </script>'; // para usar en el trabajo
                     /*'<script>
                         alert("El Usuario: ' . $usuario . ' tiene permiso para manejar el estacionamiento del club");

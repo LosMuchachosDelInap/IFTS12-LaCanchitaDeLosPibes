@@ -19,14 +19,14 @@ require_once __DIR__ . '/../Model/peticionesSql.php';
 
 // Verifica si está logueado
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-  header('Location: ../Views/noInicioSesion.php');
+  header('Location: ' . BASE_URL . '/Views/noInicioSesion.php');
   exit;
 }
 
 // Verifica si el rol NO es Administrador ni Dueño
 $rol = $_SESSION['nombre_rol'] ?? '';
 if ($rol !== 'Administrador' && $rol !== 'Dueño') {
-  header('Location: ../Views/noAutorizado.php');
+  header('Location: ' . BASE_URL . '/Views/noAutorizado.php');
   exit;
 }
 
@@ -115,7 +115,7 @@ if ($rol !== 'Administrador' && $rol !== 'Dueño') {
                 <?php
                 // Volver al login
                 if (isset($_POST['volverLogin'])) {
-                  header('locationn: ../index.php');
+                  header('Location: ' . BASE_URL . '/index.php');
                 }
                 ?>
               </form>
@@ -149,8 +149,8 @@ if ($rol !== 'Administrador' && $rol !== 'Dueño') {
                       <td><?php echo $row["telefono"]; ?></td>
                       <td><?php echo $row["rol"]; ?></td>
                       <td>
-                        <a class="btn btn-primary" href="../Views/modificar.php?id_empleado=<?php echo $row["id_empleado"]; ?>"><i class="bi bi-pencil-square"></i></a>
-                        <a class="btn btn-danger" href="../Views/eliminar.php?id_empleado=<?php echo $row["id_empleado"]; ?>"><i class="bi bi-trash3-fill"></i></a>
+                        <a class="btn btn-primary" href="<?php echo BASE_URL; ?> /modificar.php?id_empleado=<?php echo $row["id_empleado"]; ?>"><i class="bi bi-pencil-square"></i></a>
+                        <a class="btn btn-danger" href="<?php echo BASE_URL; ?> /eliminar.php?id_empleado=<?php echo $row["id_empleado"]; ?>"><i class="bi bi-trash3-fill"></i></a>
                       </td>
                     </tr>
                   <?php } ?>

@@ -9,7 +9,7 @@
 
 <body>
     <h1>NO AUTORIZADO</h1>
-    <a class="btn btn-primary" href="../../index.php">Volver</a>
+    <a class="btn btn-primary" href="<?php echo BASE_URL; ?>/index.php">Volver</a>
 </body>
 
 </html>

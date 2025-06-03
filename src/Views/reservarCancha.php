@@ -15,7 +15,7 @@ $conn = $conectarDB->getConnection();
 
 // Verifica si está logueado
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-  header('Location: ../Views/noInicioSesion.php');
+  header('Location: ' . BASE_URL . '/src/Views/noInicioSesion.php');
   exit;
 }
 

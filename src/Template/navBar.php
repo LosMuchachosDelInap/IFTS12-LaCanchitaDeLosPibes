@@ -17,10 +17,14 @@
       <!-- Columna central: logo -->
       <div class="col-4 d-flex justify-content-center">
         <!--<a class="navbar-brand mx-auto" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/index.php">--><!-- USAR EN EL TRABAJO -->
-        <a class="navbar-brand mx-auto" href="/index.php"><!-- USAR EN CASA -->
+        <!--<a class="navbar-brand mx-auto" href="/index.php">--><!-- USAR EN CASA -->
+<!--RUTA GENERAL-->  
+        <a class="navbar-brand mx-auto" href="<?php echo BASE_URL; ?>/index.php">
           <figure class="m-0">
             <!--<img src="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Public/Logo.png" alt="Cartoon soccer field with children playing and the text La canchita de los pibes in a cheerful and welcoming style" width="60" height="60" class="d-inline-block align-text-top">--> <!--USAR EN EL TRABAJO-->
-            <img src="/src/Public/Logo_2.png" class="logo-navbar" width="60" height="60" alt="Cartoon soccer field with children playing and the text La canchita de los pibes in a cheerful and welcoming style"> <!--USAR EN CASA-->
+            <!--<img src="/src/Public/Logo_2.png" class="logo-navbar" width="60" height="60" alt="Cartoon soccer field with children playing and the text La canchita de los pibes in a cheerful and welcoming style">--> <!--USAR EN CASA-->
+<!--RUTA GENERAL-->
+            <img src="<?php echo BASE_URL; ?>/src/Public/Logo.png" class="logo-navbar" width="60" height="60" alt="Cartoon soccer field with children playing and the text La canchita de los pibes in a cheerful and welcoming style">
           </figure>
         </a>
       </div>
@@ -35,9 +39,11 @@
           </button>
         <?php } else { ?>
           <!--SI ESTA LOGUIEADO MUESTRA EL BOTON DE CERRAR SESION-->
-         <!-- <a class="btn btn-danger" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/cerrarSesion.php">PARA USAR EN EL TRABAJO-->
-          <a class="btn btn-danger" href="/src/Controllers/cerrarSesion.php"> <!--USAR EN CASA-->
-            <i class="bi bi-box-arrow-right"></i>
+          <!--<a class="btn btn-danger" href="/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Controllers/cerrarSesion.php">--><!--PARA USAR EN EL TRABAJO-->
+          <!--<a class="btn btn-danger" href="/src/Controllers/cerrarSesion.php">--> <!--USAR EN CASA-->
+        <!--RUTA GENERAL-->
+          <a href="<?php echo BASE_URL; ?>/src/Controllers/cerrarSesion.php"></a>
+          <i class="bi bi-box-arrow-right"></i>
           </a>
         <?php } ?>
       </div>
@@ -72,8 +78,9 @@
         <li class="list-group-item text-white">
           <!-- esta porcion de codigo "dirname($_SERVER['PHP_SELF'])" inserta la ruta hasta donde esta el proyecto 
        ejemplo: http://localhost/Mis%20proyectos/IFTS12-lacanchitadelospibes , luego colocamos la ruta que falta hasta el archivo-->
-          <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '../../../index.php'; ?>" class="text-white text-decoration-none">Home</a> <!--USAR EN EL TRABAJO-->
+          <!--<a href="<?php //echo dirname($_SERVER['PHP_SELF']) . '../../../index.php'; ?>" class="text-white text-decoration-none">Home</a>--> <!--USAR EN EL TRABAJO-->
           <!--<a href="/index.php" class="bg-dark text-white text-decoration-none">Home</a>--> <!--USAR EN casa-->
+        <a href="<?php echo BASE_URL; ?>/index.php" class="bg-dark text-white text-decoration-none">Home</a>
         </li>
         <!--SE MUESTRA SEGUN ROL-->
         <?php require_once __DIR__ . '/../Controllers/navBarListGroup.php'; ?>
