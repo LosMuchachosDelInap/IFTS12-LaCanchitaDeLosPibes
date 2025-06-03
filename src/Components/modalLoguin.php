@@ -22,7 +22,7 @@ $conn = $conexion->getConnection();
                         <h5 class="card-title text-center">Ingrese Usuario y Contraseña</h5>
                     </div>
                     <div class="card-body">
-                       <form action="src/Controllers/validarUsuario.php" method="post" class="row g-3"> 
+                       <form action="<?php echo BASE_URL; ?>/src/Controllers/validarUsuario.php" method="post" class="row g-3">
                             <div>
                                 <label for="inputEmail" class="form-label">Usuario</label>
                                 <input type="text" class="form-control" id="inputImail" name="email" required>

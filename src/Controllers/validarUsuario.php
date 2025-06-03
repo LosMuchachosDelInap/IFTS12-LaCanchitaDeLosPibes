@@ -7,7 +7,8 @@ error_reporting(E_ALL);
 if (!defined('BASE_URL')) {
     $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $host = $_SERVER['HTTP_HOST'];
-    $carpeta = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+    $carpeta = '/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes';
+    //$carpeta = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
     define('BASE_URL', $protocolo . $host . $carpeta);
 }
 // Inicia la sesión antes de cualquier salida
@@ -60,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo '<script>
                         alert("El Usuario: ' . $usuario . ' tiene rol de administrador del Bar del club");
                        window.location.href = "<?php echo BASE_URL; ?>/index.php";
-                    </script>';//--- PARA USAR EN EL TRABAJO*/
+                    </script>'; //--- PARA USAR EN EL TRABAJO*/
                     /*'<script>
                         alert("El Usuario: ' . $usuario . ' tiene rol de administrador del Bar del club");
                        window.location.href = "/index.php"; 
@@ -70,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo '<script>
                         alert("El Usuario: ' . $usuario . ' tiene permisos para manejar los alquileres del club");
                         window.location.href = "<?php echo BASE_URL; ?>/index.php";
-                    </script>';// para usar en el trabajo
+                    </script>'; // para usar en el trabajo
                     /*'<script>
                         alert("El Usuario: ' . $usuario . ' tiene permisos para manejar los alquileres del club");
                         window.location.href = "/index.php";
@@ -89,16 +90,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             } else {
                 $_SESSION['error_message'] = 'Usuario o contraseña incorrecta';
-             
             }
-           // mysqli_stmt_close($stmt);
+            // mysqli_stmt_close($stmt);
         } else {
             $_SESSION['error_message'] = 'Error interno del servidor';
         }
     } else {
         $_SESSION['error_message'] = 'Debe llenar ambos campos';
     }
-   // mysqli_close($conn);
+    // mysqli_close($conn);
     header('Location: /index.php'); // Redirige al modal
     exit;
 }

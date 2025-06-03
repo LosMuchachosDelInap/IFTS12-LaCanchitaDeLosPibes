@@ -10,26 +10,25 @@ body {
 }
 
 body {
-  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
- background-image: url(../Public/Fondo.png); /* <-- aquí va la imagen */
+  background-image: url(../Public/Fondo.png); /* <-- aquí va la imagen */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   font-family: sans-serif;
   color: aliceblue;
   text-align: center;
-   margin: 0;
+  margin: 0;
   padding: 0;
 }
 /*----------------------------------------------------------Parte central de la pagina de inicio---------------------------------------------------*/
 /*----------------------------------------------------------Con esto queda el footer abajo---------------------------------------------------*/
 .centrar {
   padding-top: 20vh; /* Ajusta según tu diseño */
-   flex: 1;
-   overflow-y: auto;
+  flex: 1;
+  overflow-y: auto;
   max-height: 100vh; /* Ajusta según tu diseño */
   display: flex;
   flex-direction: column;
@@ -53,15 +52,13 @@ body {
   margin-bottom: 5px;
   margin-top: auto; /* Esto empuja el footer al fondo */
   color: rgb(3, 88, 28);
-  text-shadow:
-    0 0 10px #00ff99,   /* verde agua */
-    0 0 20px #00ccff,   /* celeste */
-    0 0 30px #ff00cc;   /* fucsia */
+  text-shadow: 0 0 10px #00ff99, /* verde agua */ 0 0 20px #00ccff,
+    /* celeste */ 0 0 30px #ff00cc; /* fucsia */
 }
 
 footer,
 .footer {
-   background-color: transparent !important;
+  background-color: transparent !important;
   box-shadow: 0 0 10px green;
   transition: all 0.3s ease-in-out;
   background-color: transparent !important;
@@ -88,13 +85,11 @@ footer:hover,
   border: 2px solid Black;
   border-radius: 50%;
   transition: all 0.2s ease-in;
-
 }
 
 .iconos-redes-sociales a:hover {
   background-color: black;
   border: 2px solid rgb(13, 110, 253);
- 
 }
 
 .iconos-redes-sociales a :hover i {
@@ -111,69 +106,102 @@ footer:hover,
   box-shadow: 0 0 10px green;
   transition: all 0.3s ease-in-out;
 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050; /* Bootstrap usa 1040 para navbar fijo */
 }
 
 .navbar:hover {
   box-shadow: 0 0 40px green;
 }
 
-
 /* Cambia el color de fondo y la opacidad de la barra lateral */
 .offcanvas.offcanvas-start {
-  background-color: rgba(0, 128, 0, 0.1) !important; /* verde con 50% de opacidad */
+  background-color: rgba(
+    0,
+    128,
+    0,
+    0.1
+  ) !important; /* verde con 50% de opacidad */
   color: #fff;
   backdrop-filter: blur(15px); /* Opcional: desenfoque de fondo */
 }
 
-
 .navbar-toggler {
+
   position: relative;
   z-index: 2;
-  box-shadow:
-    0 0 10px 4px #00ff99,   /* verde agua */
-    0 0 20px 8px #00ccff,   /* celeste */
-    0 0 30px 12px #ff00cc;  /* fucsia */
+  box-shadow: 0 0 10px 4px #00ff99, /* verde agua */ 0 0 20px 8px #00ccff,
+    /* celeste */ 0 0 30px 12px #ff00cc; /* fucsia */
   transition: box-shadow 0.3s;
 }
 
 .navbar-toggler:hover {
-  box-shadow:
-    0 0 40px 4px #00ff99,
-    0 0 50px 8px #00ccff,
-    0 0 60px 12px #ff00cc;
+  box-shadow: 0 0 40px 4px #00ff99, 0 0 50px 8px #00ccff, 0 0 60px 12px #ff00cc;
 }
+
+/*----------------------------------------------------------*/
+/* Cambia el color de las rayitas del toggler */
+.navbar-toggler .navbar-toggler-icon {
+  background-image: none; /* Quita el SVG por defecto */
+  width: 1.5em;
+  height: 1.5em;
+  position: relative;
+  display: inline-block;
+}
+
+.navbar-toggler .navbar-toggler-icon::before,
+.navbar-toggler .navbar-toggler-icon::after,
+.navbar-toggler .navbar-toggler-icon span {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #06e824; /* Cambia aquí el color de las rayitas */
+  border-radius: 2px;
+  margin: 6px 0;
+}
+
+.navbar-toggler .navbar-toggler-icon span {
+  margin: 0;
+}
+
+/* Cambia el borde del botón toggler */
+.navbar-toggler {
+  border: 2px solid #0cf026 !important; /* Cambia aquí el color del borde */
+}
+/*----------------------------------------------------------------------------------*/
 
 .logo-navbar {
   border-radius: 50%; /* Opcional: hace el logo circular */
-  box-shadow:
-    0 0 10px 4px #00ff99,   /* verde agua */
-    0 0 20px 8px #00ccff,   /* celeste */
-    0 0 30px 12px #ff00cc;  /* fucsia */
+  box-shadow: 0 0 10px 4px #00ff99, /* verde agua */ 0 0 20px 8px #00ccff,
+    /* celeste */ 0 0 30px 12px #ff00cc; /* fucsia */
   transition: box-shadow 0.3s;
 }
 
 .logo-navbar:hover {
-  box-shadow:
-    0 0 20px 8px #00ff99,
-    0 0 40px 16px #00ccff,
-    0 0 60px 24px #ff00cc;
+  box-shadow: 0 0 20px 8px #00ff99, 0 0 40px 16px #00ccff, 0 0 60px 24px #ff00cc;
 }
 
-.bnt-ingresar,.bnt-registrar {  
-  color: white;
-  box-shadow:
-    0 0 10px 4px #00ff99,   /* verde agua */
-    0 0 20px 8px #00ccff,   /* celeste */
-    0 0 30px 12px #ff00cc;  /* fucsia */
- 
+/* Cambia el color de texto por defecto */
+.bnt-ingresar,
+.bnt-registrar {
+  color: #0aee3f; /* azul Bootstrap */
+  /*background-color: white;*/
+  border: 1px solid #0d6efd;
+  box-shadow: 0 0 10px 4px #00ff99, 0 0 20px 8px #00ccff, 0 0 30px 12px #ff00cc;
+  transition: color 0.2s, background 0.2s, box-shadow 0.3s;
 }
 
+/* Cambia el color de texto y fondo al hacer hover */
 .bnt-ingresar:hover,
 .bnt-registrar:hover {
-  box-shadow:
-    0 0 20px 8px #00ff99,
-    0 0 40px 16px #00ccff,
-    0 0 60px 24px #ff00cc;
+  color: #ffc107; /* amarillo Bootstrap */
+  /*background-color: #0d6efd;*/
+  border: 1px solid #ffc107;
+  box-shadow: 0 0 20px 8px #00ff99, 0 0 40px 16px #00ccff, 0 0 60px 24px #ff00cc;
 }
 
 li {
@@ -182,7 +210,7 @@ li {
 }
 /*----------------------------- Modal loguin--------------------------------*/
 .modal-fondo {
-  background-image: url('../Public/FondoModal.webp');
+  background-image: url("../Public/FondoModal.webp");
   background-size: cover;
   background-position: center;
 }

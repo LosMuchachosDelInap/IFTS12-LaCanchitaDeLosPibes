@@ -1,4 +1,14 @@
 <?php
+
+// Definir BASE_URL solo si no está definida
+if (!defined('BASE_URL')) {
+    $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+    $host = $_SERVER['HTTP_HOST'];
+    //$carpeta = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');// fija la ruta hasta la carpeta en donde esta el archivo que estoy usando o abriendo
+    $carpeta = '/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes';
+    define('BASE_URL', $protocolo . $host . $carpeta);
+}
+
 session_start();
 unset($_SESSION['logged_in']);
 // cierra la sesion

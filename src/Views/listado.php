@@ -1,4 +1,12 @@
 <?php
+
+if (!defined('BASE_URL')) {
+  $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+  $host = $_SERVER['HTTP_HOST'];
+  $carpeta = '/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes';
+  define('BASE_URL', $protocolo . $host . $carpeta);
+}
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -163,9 +171,9 @@ if ($rol !== 'Administrador' && $rol !== 'Dueño') {
     </div>
   </div>
 
-  <?php 
-   include_once __DIR__ . '/../Template/footer.php';
-   include_once __DIR__ . '/../Components/modalContactos.php';
+  <?php
+  include_once __DIR__ . '/../Template/footer.php';
+  include_once __DIR__ . '/../Components/modalContactos.php';
   ?>
 </body>
 
