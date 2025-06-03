@@ -4,7 +4,7 @@ if (!defined('BASE_URL')) {
     $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $host = $_SERVER['HTTP_HOST'];
     //  $carpeta = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
-    $carpeta = '/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes';
+    $carpeta = '/Mis_proyectos/IFTS12-LaCanchitaDeLosPibes';
     define('BASE_URL', $protocolo . $host . $carpeta);
 }
 ?>

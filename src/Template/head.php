@@ -4,7 +4,8 @@ if (!defined('BASE_URL')) {
     $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $host = $_SERVER['HTTP_HOST'];
     //$carpeta = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');// fija la ruta hasta la carpeta en donde esta el archivo que estoy usando o abriendo
-    $carpeta = '/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes';
+    //$carpeta = '/Mis_Proyectos/IFTS12-LaCanchitaDeLosPibes';// XAMPP
+     $carpeta = ''; // SIN subcarpeta// POR PHP - s LOCALHOST:8000
     define('BASE_URL', $protocolo . $host . $carpeta);
 }
 ?>
@@ -18,9 +19,9 @@ if (!defined('BASE_URL')) {
   <!--<link rel="stylesheet" href="<?php //echo '/Mis%20proyectos/IFTS12-LaCanchitaDeLosPibes/src/Css/styles.css'; ?>">--> <!--PARA USAR EN EL TRABAJO-->
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>/src/Css/styles.css">
 
-  <div>
+  
   <title>La canchita de los pibes</title>
-</div>
+
 </head>
 
 
