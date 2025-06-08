@@ -3,7 +3,8 @@
 if (!defined('BASE_URL')) {
   $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
   $host = $_SERVER['HTTP_HOST'];
-  $carpeta = '/Mis_proyectos/IFTS12-LaCanchitaDeLosPibes';
+ // $carpeta = '/Mis_proyectos/IFTS12-LaCanchitaDeLosPibes';// cuando usas XAMPP
+  $carpeta = '';// cuando usas <localhost:8000>
   define('BASE_URL', $protocolo . $host . $carpeta);
 }
 
@@ -157,8 +158,8 @@ if ($rol !== 'Administrador' && $rol !== 'Dueño') {
                       <td><?php echo $row["telefono"]; ?></td>
                       <td><?php echo $row["rol"]; ?></td>
                       <td>
-                        <a class="btn btn-primary" href="<?php echo BASE_URL; ?> /modificar.php?id_empleado=<?php echo $row["id_empleado"]; ?>"><i class="bi bi-pencil-square"></i></a>
-                        <a class="btn btn-danger" href="<?php echo BASE_URL; ?> /eliminar.php?id_empleado=<?php echo $row["id_empleado"]; ?>"><i class="bi bi-trash3-fill"></i></a>
+                        <a class="btn btn-primary" href="<?php echo BASE_URL; ?>/src/Views/modificar.php?id_empleado=<?php echo $row["id_empleado"]; ?>"><i class="bi bi-pencil-square"></i></a>
+                        <a class="btn btn-danger" href="<?php echo BASE_URL; ?>/src/Views/eliminar.php?id_empleado=<?php echo $row["id_empleado"]; ?>"><i class="bi bi-trash3-fill"></i></a>
                       </td>
                     </tr>
                   <?php } ?>
