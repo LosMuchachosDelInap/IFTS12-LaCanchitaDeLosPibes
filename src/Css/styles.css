@@ -214,3 +214,11 @@ li {
   background-size: cover;
   background-position: center;
 }
+/*---------------------------Boton crear Empleado---------------------------*/
+/* Botón deshabilitado gris */
+#crearEmpleadoBtn:disabled {
+  background-color: #ccc !important;
+  border-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed;
+}

@@ -3,8 +3,8 @@
 if (!defined('BASE_URL')) {
   $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
   $host = $_SERVER['HTTP_HOST'];
- // $carpeta = '/Mis_proyectos/IFTS12-LaCanchitaDeLosPibes';// cuando usas XAMPP
-  $carpeta = '';// cuando usas <localhost:8000>
+  // $carpeta = '/Mis_proyectos/IFTS12-LaCanchitaDeLosPibes';// cuando usas XAMPP
+  $carpeta = ''; // cuando usas <localhost:8000>
   define('BASE_URL', $protocolo . $host . $carpeta);
 }
 
@@ -61,19 +61,24 @@ if ($rol !== 'Administrador' && $rol !== 'Dueño') {
           <div class="row">
             <div class="col-2">
               <h5 class="alert alert-secondary text-bg-dark">Ingrese empleado</h5>
-              <form method="post" action="listado.php" class="d-grid bg-dark p-2 rounded">
+              <form method="post" action="listado.php" class="d-grid bg-dark p-2 rounded" id="formCrearEmpleado">
+                <!-- Mensaje de error -->
+                <?php if (isset($errorCampos) && $errorCampos): ?>
+                  <div class="alert alert-danger py-1">Debe llenar todos los campos</div>
+                <?php endif; ?>
+                <!-- Mensaje de error -->
                 <!-- Formulario de creación de empleado -->
-                <input type="email" name="email" placeholder="usuario" class="mt-2 form-control">
-                <input type="password" name="clave" placeholder="clave" class="mt-2 form-control">
-                <input type="text" name="nombre" placeholder="nombre" class=" mt-2 form-control">
-                <input type="text" name="apellido" placeholder="apellido" class="mt-2 form-control">
-                <input type="text" name="edad" placeholder="edad" class="mt-2 form-control">
-                <input type="text" name="dni" placeholder="dni" class="mt-2 form-control">
-                <input type="text" name="telefono" placeholder="telefono" class="mt-2 form-control">
+                <input type="email" name="email" id="email" placeholder="usuario" class="mt-2 form-control">
+                <input type="password" name="clave" id="clave" placeholder="clave" class="mt-2 form-control">
+                <input type="text" name="nombre" id="nombre" placeholder="nombre" class=" mt-2 form-control">
+                <input type="text" name="apellido" id="apellido" placeholder="apellido" class="mt-2 form-control">
+                <input type="text" name="edad" id="edad" placeholder="edad" class="mt-2 form-control">
+                <input type="text" name="dni" id="dni" placeholder="dni" class="mt-2 form-control">
+                <input type="text" name="telefono" id="telefono" placeholder="telefono" class="mt-2 form-control">
                 <div>
                   <div class="input-group">
                     <!-- LISTA DESPLEGABLE CARGAOS --------------------------------------->
-                    <select name="rol" class="mt-2 form-select form-control btn btn-secondary">
+                    <select name="rol" id="rol" class="mt-2 form-select form-control btn btn-secondary">
                       <?php
                       $listarRoles = mysqli_query($conn, $listarRol);
                       while ($row = mysqli_fetch_array($listarRoles)) { ?>
@@ -83,41 +88,53 @@ if ($rol !== 'Administrador' && $rol !== 'Dueño') {
                     <!-- LISTA DESPLEGABLE CARGAOS --------------------------------------->
                   </div>
                 </div>
-                <button type="submit" name="crearEmpleado" class="mt-2 btn btn-primary form-control">Crear empleado</button>
+                <button type="submit" name="crearEmpleado" id="crearEmpleadoBtn" class="mt-2 btn btn-primary form-control" disabled>Crear empleado</button>
                 <?php
                 // crear empleado
                 // si se hace click en el boton de crear empleado
                 // se ejecuta la consulta de crear empleado
                 if (isset($_POST['crearEmpleado'])) {
-                  $id_Rol = $_POST['rol'] ?? null;
+                  $campos = ['email', 'clave', 'nombre', 'apellido', 'edad', 'dni', 'telefono', 'rol'];
+                  $errorCampos = false;
+                  foreach ($campos as $campo) {
+                    if (empty($_POST[$campo])) {
+                      $errorCampos = true;
+                      break;
+                    }
+                  }
+                  if ($errorCampos) {
+                    echo '<div class="alert alert-danger py-1">Debe llenar todos los campos</div>';
+                  } else {
+                    $id_Rol = $_POST['rol'] ?? null;
 
-                  // Insertar persona correctamente
-                  $stmt = mysqli_prepare($conn, $crearPersonaQuery);
-                  mysqli_stmt_bind_param($stmt, "ssiss", $_POST['apellido'], $_POST['nombre'], $_POST['edad'], $_POST['dni'], $_POST['telefono']);
-                  mysqli_stmt_execute($stmt);
-                  $idPersonaObtenido = mysqli_insert_id($conn);
-                  mysqli_stmt_close($stmt);
-
-                  if ($idPersonaObtenido) {
-                    $clave = $_POST['clave'];
-                    $hashed_password = password_hash($clave, PASSWORD_DEFAULT);
-                    $registrarPersonaQuery = "INSERT INTO usuario (id_persona, email, clave) VALUES (?, ?, ?)";
-                    $stmt = mysqli_prepare($conn, $registrarPersonaQuery);
-                    mysqli_stmt_bind_param($stmt, "iss", $idPersonaObtenido, $_POST['email'], $hashed_password);
+                    // Insertar persona correctamente
+                    $stmt = mysqli_prepare($conn, $crearPersonaQuery);
+                    mysqli_stmt_bind_param($stmt, "ssiss", $_POST['apellido'], $_POST['nombre'], $_POST['edad'], $_POST['dni'], $_POST['telefono']);
                     mysqli_stmt_execute($stmt);
-                    $idUsuarioObtenido = mysqli_insert_id($conn);
+                    $idPersonaObtenido = mysqli_insert_id($conn);
                     mysqli_stmt_close($stmt);
 
-                    if ($id_Rol) {
-                      $crearEmpleado = "INSERT INTO empleado (id_rol, id_persona, id_usuario) VALUES (?, ?, ?)";
-                      $stmt = mysqli_prepare($conn, $crearEmpleado);
-                      mysqli_stmt_bind_param($stmt, "iii", $id_Rol, $idPersonaObtenido, $idUsuarioObtenido);
+                    if ($idPersonaObtenido) {
+                      $clave = $_POST['clave'];
+                      $hashed_password = password_hash($clave, PASSWORD_DEFAULT);
+                      $registrarPersonaQuery = "INSERT INTO usuario (id_persona, email, clave) VALUES (?, ?, ?)";
+                      $stmt = mysqli_prepare($conn, $registrarPersonaQuery);
+                      mysqli_stmt_bind_param($stmt, "iss", $idPersonaObtenido, $_POST['email'], $hashed_password);
                       mysqli_stmt_execute($stmt);
+                      $idUsuarioObtenido = mysqli_insert_id($conn);
                       mysqli_stmt_close($stmt);
+
+                      if ($id_Rol) {
+                        $crearEmpleado = "INSERT INTO empleado (id_rol, id_persona, id_usuario) VALUES (?, ?, ?)";
+                        $stmt = mysqli_prepare($conn, $crearEmpleado);
+                        mysqli_stmt_bind_param($stmt, "iii", $id_Rol, $idPersonaObtenido, $idUsuarioObtenido);
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_close($stmt);
+                      }
+                      echo "<script>alert('Usuario creado exitosamente');</script>";
+                    } else {
+                      echo "<script>alert('Error al crear usuario');</script>";
                     }
-                    echo "<script>alert('Usuario creado exitosamente');</script>";
-                  } else {
-                    echo "<script>alert('Error al crear usuario');</script>";
                   }
                 }
                 ?>
@@ -173,9 +190,30 @@ if ($rol !== 'Administrador' && $rol !== 'Dueño') {
   </div>
 
   <?php
+  // Footer y modal de contactos
   include_once __DIR__ . '/../Template/footer.php';
   include_once __DIR__ . '/../Components/modalContactos.php';
   ?>
+  <script>
+    // Validación en el cliente para deshabilitar el botón si algún campo está vacío
+    document.addEventListener('DOMContentLoaded', function() {
+      const campos = ['email', 'clave', 'nombre', 'apellido', 'edad', 'dni', 'telefono', 'rol'];
+      const btn = document.getElementById('crearEmpleadoBtn');
+      campos.forEach(id => {
+        document.getElementById(id).addEventListener('input', validarCampos);
+      });
+
+      function validarCampos() {
+        let vacio = false;
+        campos.forEach(id => {
+          const el = document.getElementById(id);
+          if (!el.value.trim()) vacio = true;
+        });
+        btn.disabled = vacio;
+      }
+      validarCampos();
+    });
+  </script>
 </body>
 
 </html>
