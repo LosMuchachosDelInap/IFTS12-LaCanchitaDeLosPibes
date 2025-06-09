@@ -4,12 +4,11 @@ if (!defined('BASE_URL')) {
     $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $host = $_SERVER['HTTP_HOST'];
     //  $carpeta = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
-    $carpeta = '/Mis_proyectos/IFTS12-LaCanchitaDeLosPibes';
+    // $carpeta = '/Mis_proyectos/IFTS12-LaCanchitaDeLosPibes';// XAMPP
+    $carpeta = ''; // localhost:8000
     define('BASE_URL', $protocolo . $host . $carpeta);
 }
-?>
-
-<?php
+// Mostrar errores de PHP
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -33,22 +32,22 @@ $usuarioLogueado = $_SESSION['email'] ?? null;
 
 <?php require_once __DIR__ . '/../Template/head.php'; ?>
 
-<body>
-    <div>
+<body class="content">
+
     <?php require_once __DIR__ . '/../Template/navBar.php'; ?>
-</div>
-    <div class="centrar" style="background-image: url('../Public/Pagina-en-construccion3.jpg'); background-size: cover; background-position: center;">
-        <!-- Aquí tu contenido -->
-        <h1 class="text-center text-white">Página en Construcción</h1>
-        <p class="text-center text-white">Estamos trabajando para mejorar tu experiencia. Vuelve pronto.</p>
-        <p class="text-center text-white">Mientras tanto, puedes explorar otras secciones del sitio.</p>
-        <div class="text-center">
-            <a href="<?php echo BASE_URL; ?>" class="btn btn-primary">Volver al Inicio</a>
+
+    <div class="centrar">
+<h1>
+        <span class="text-danger">¡Página en construcción!</span>
+        <br>
+        <span class="text-warning">Pronto estará disponible para reservar canchas.</span>
+</h1>
+        <img src="../Public/Pagina-en-construccion3-bis.png" alt="Pagina en construccion ">
+
     </div>
-    
-    <div>
-        <?php require_once __DIR__ . '/../Template/footer.php'; ?>
-    </div>
+
+    <?php include_once(__DIR__ . '/../Template/footer.php'); ?>
+
 </body>
 
 </html>

@@ -62,31 +62,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo '<script>
                         alert("El Usuario: ' . $usuario . ' tiene rol de administrador del Bar del club");
                        window.location.href = "<?php echo BASE_URL; ?>/index.php";
-                    </script>'; //--- PARA USAR EN EL TRABAJO*/
-                    /*'<script>
-                        alert("El Usuario: ' . $usuario . ' tiene rol de administrador del Bar del club");
-                       window.location.href = "/index.php"; 
-                    </script>';/* PARA USAR EN CASA */
+                    </script>'; 
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Alquiler') {
                     echo '<script>
                         alert("El Usuario: ' . $usuario . ' tiene permisos para manejar los alquileres del club");
                         window.location.href = "<?php echo BASE_URL; ?>/index.php";
-                    </script>'; // para usar en el trabajo
-                    /*'<script>
-                        alert("El Usuario: ' . $usuario . ' tiene permisos para manejar los alquileres del club");
-                        window.location.href = "/index.php";
-                    </script>';*/ // para usar en casa
+                    </script>'; 
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Estacionamiento') {
                     echo '<script>
                         alert("El Usuario: ' . $usuario . ' tiene permiso para manejar el estacionamiento del club");
                         window.location.href = "<?php echo BASE_URL; ?>/index.php";
-                    </script>'; // para usar en el trabajo
-                    /*'<script>
-                        alert("El Usuario: ' . $usuario . ' tiene permiso para manejar el estacionamiento del club");
-                        window.location.href = "/index.php";
-                    </script>';*/ // para usar en casa
+                    </script>'; 
                     exit;
                 }
             } else {
