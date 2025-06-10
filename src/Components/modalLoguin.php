@@ -1,6 +1,6 @@
 <?php
 // Llamo al archivo de la clase de conexión (lo requiero para poder instanciar la clase)
-require_once 'src/ConectionBD/CConection.php';
+require_once __DIR__ . '/../ConectionBD/CConection.php';
 
 // Instanciao la clase
 $conexion = new ConectionDB();

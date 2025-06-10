@@ -47,7 +47,11 @@ $usuarioLogueado = $_SESSION['email'] ?? null;
     </div>
 
     <?php include_once(__DIR__ . '/../Template/footer.php'); ?>
-    <?php include_once __DIR__ . '/../Components/modalContactos.php'; ?>
+    <?php
+      include_once(__DIR__ . "/../Components/modalLoguin.php");
+      include_once(__DIR__ . "/../Components/modalRegistrar.php");
+      include_once(__DIR__ . "/../Components/modalContactos.php");
+      ?>
 </body>
 
 </html>
