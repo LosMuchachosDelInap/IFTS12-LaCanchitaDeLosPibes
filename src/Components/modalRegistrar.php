@@ -61,8 +61,7 @@ global $crearEmpleadoQuery;
                     <input type="text" name="edad" class="form-control" id="registrarEdad" aria-label="edad" aria-describedby="basic-addon1">
                     <span class="input-group-text" id="basic-addon1">Dni</span>
                     <input type="text" name="dni" class="form-control" id="registrarDni" aria-label="dni" aria-describedby="basic-addon1">
-                  <span class="input-group-text" id="basic-addon1">Rol</span>
-                    <input value="Cliente" type="text" name="rol" class="form-control" id="registrarRol" aria-label="rol" aria-describedby="basic-addon1">
+                    <input value="Cliente" type="hidden" name="rol" class="form-control" id="registrarRol" aria-label="rol" aria-describedby="basic-addon1">
                   </div>
                 </div>
 

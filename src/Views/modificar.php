@@ -66,8 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modificar'])) {
           <input type="text" name="apellido" placeholder="Apellido" value="<?php echo $empleado["apellido"]; ?>" class="mt-2 form-control">
           <input type="text" name="edad" placeholder="Edad" value="<?php echo $empleado["edad"]; ?>" class="mt-2 form-control">
           <input type="text" name="dni" placeholder="DNI" value="<?php echo $empleado["dni"]; ?>" class="mt-2 form-control">
-          <input type="text" name="usuario" placeholder="Usuario" value="<?php echo $empleado["email"]; ?>" class="mt-2 form-control">
-          <input type="text" name="clave" placeholder="Clave" value="<?php echo $empleado["clave"]; ?>" class="mt-2 form-control">
+          <input type="email" name="usuario" placeholder="Usuario" value="<?php echo $empleado["email"]; ?>" class="mt-2 form-control">
+          <input type="password" name="clave" placeholder="Clave" value="<?php echo $empleado["clave"]; ?>" class="mt-2 form-control">
           <input type="text" name="telefono" placeholder="Teléfono" value="<?php echo $empleado["telefono"]; ?>" class="mt-2 form-control">
           <div>
             <div class="input-group">
