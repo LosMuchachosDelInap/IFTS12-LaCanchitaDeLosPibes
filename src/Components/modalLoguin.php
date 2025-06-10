@@ -25,7 +25,7 @@ $conn = $conexion->getConnection();
                        <form action="<?php echo BASE_URL; ?>/src/Controllers/validarUsuario.php" method="post" class="row g-3">
                             <div>
                                 <label for="inputEmail" class="form-label">Usuario</label>
-                                <input type="text" class="form-control" id="inputImail" name="email" required>
+                                <input type="text" class="form-control" id="inputEmail" name="email" required>
                             </div>
                             <div>
                                 <label for="inputClave" class="form-label">Contraseña</label>

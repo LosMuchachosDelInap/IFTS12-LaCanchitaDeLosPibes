@@ -28,7 +28,7 @@
             <!--Verifica si hay alguien logueado,si hay muestra el email ,sino, lo deja en blanco para que se llene manualmente-->
             <input type="email" name="email" class="form-control" id="usuario"
               value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8') : ''; ?>"
-              readonly>
+              <?php echo (isset($_SESSION['email']) ? 'readonly' : 'required'); ?>>
           </div>
           <div class="mb-3">
             <label for="consulta" class="col-form-label text-dark text-start">Escribanos su cansulta:</label>

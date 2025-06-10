@@ -6,6 +6,13 @@ use PHPMailer\PHPMailer\Exception;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
+use Dotenv\Dotenv;
+
+// Cargar variables de entorno solo una vez
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv->load();
+error_log('DEBUG ENV: ' . json_encode($_ENV));
+
 class ContactoController
 {
     private $emailUsuario;
@@ -44,18 +51,19 @@ class ContactoController
         }
 
         try {
-            // Configuración del servidor SMTP de Gmail
+            // Configuración del servidor SMTP usando variables de entorno
             $this->mail->isSMTP();
-            $this->mail->Host       = 'smtp.gmail.com';
-            $this->mail->SMTPAuth   = true;
-            $this->mail->Username   = 'losmuchachosdelinapifts@gmail.com';
-            $this->mail->Password   = 'yeiyijxtixrzcylq'; // Usa tu contraseña de aplicación
+            $this->mail->Host       = $_ENV['MAIL_HOST'];
+            $this->mail->SMTPAuth   = $_ENV['MAIL_SMTPAuth'] === 'true';
+            $this->mail->Username   = $_ENV['MAIL_USERNAME'];
+            $this->mail->Password   = $_ENV['MAIL_PASSWORD'];
             $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $this->mail->Port       = 587;
+            $this->mail->Port       = $_ENV['MAIL_PORT'];
 
             // Remitente y destinatario
-            $this->mail->setFrom('losmuchachosdelinapifts@gmail.com', 'Consulta Web');
-            $this->mail->addAddress('losmuchachosdelinapifts@gmail.com', 'Contacto La Canchita de los Pibes');
+            error_log('MAIL_USERNAME: ' . getenv('MAIL_USERNAME'));// esto es para ver el errror
+            $this->mail->setFrom($_ENV['MAIL_USERNAME'], 'Consulta Web');
+            $this->mail->addAddress($_ENV['MAIL_USERNAME'], 'Contacto La Canchita de los Pibes');
             $this->mail->addReplyTo($this->emailUsuario, 'Consulta Web');
             $this->mail->CharSet = 'UTF-8';
             $this->mail->isHTML(true);

@@ -37,17 +37,17 @@ $usuarioLogueado = $_SESSION['email'] ?? null;
     <?php require_once __DIR__ . '/../Template/navBar.php'; ?>
 
     <div class="centrar">
-<h1>
-        <span class="text-danger">¡Página en construcción!</span>
-        <br>
-        <span class="text-warning">Pronto estará disponible para reservar canchas.</span>
-</h1>
+        <h1>
+            <span class="text-danger">¡Página en construcción!</span>
+            <br>
+            <span class="text-warning">Pronto estará disponible para reservar canchas.</span>
+        </h1>
         <img src="../Public/Pagina-en-construccion3-bis.png" alt="Pagina en construccion ">
 
     </div>
 
     <?php include_once(__DIR__ . '/../Template/footer.php'); ?>
-
+    <?php include_once __DIR__ . '/../Components/modalContactos.php'; ?>
 </body>
 
 </html>

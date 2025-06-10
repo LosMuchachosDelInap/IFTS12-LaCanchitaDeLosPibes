@@ -7,8 +7,8 @@ error_reporting(E_ALL);
 if (!defined('BASE_URL')) {
     $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $host = $_SERVER['HTTP_HOST'];
-     //$carpeta = '/Mis_Proyectos/IFTS12-LaCanchitaDeLosPibes';// XAMPP
-     $carpeta = ''; // SIN subcarpeta// POR PHP - s LOCALHOST:8000
+    //$carpeta = '/Mis_Proyectos/IFTS12-LaCanchitaDeLosPibes';// XAMPP
+    $carpeta = ''; // SIN subcarpeta// POR PHP - s LOCALHOST:8000
     //$carpeta = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
     define('BASE_URL', $protocolo . $host . $carpeta);
 }
@@ -40,9 +40,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_stmt_bind_param($stmt, "s", $usuario);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_bind_result($stmt, $db_clave, $id_usuario, $idRol, $nombreRol);
-            mysqli_stmt_fetch($stmt);
-
-            if (!empty($db_clave) && password_verify($clave, $db_clave)) {
+            $hayUsuario=mysqli_stmt_fetch($stmt);
+            // Verifica si se obtuvo un usuario
+           // $hayUsuario = mysqli_stmt_num_rows($stmt) > 0;
+            // Si se obtuvo un usuario y la contraseña coincide
+            // Verifica si la contraseña es correcta
+            //if ($hayUsuario && password_verify($clave, $db_clave)) {
+                // Si la contraseña es correcta, crea una sesión
+                if ($hayUsuario && !empty($db_clave) && password_verify($clave, $db_clave)) {
                 $_SESSION['email'] = $usuario; // Guardar el email en la sesión
                 $_SESSION['logged_in'] = true; // Marca al usuario como logueado
                 $_SESSION['id_usuario'] = $id_usuario; // Guarda el id del usuario
@@ -60,21 +65,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Bar') {
                     echo '<script>
-                        alert("El Usuario: ' . $usuario . ' tiene rol de administrador del Bar del club");
-                       window.location.href = "<?php echo BASE_URL; ?>/index.php";
-                    </script>'; 
+                            alert("El Usuario: ' . $usuario . ' tiene rol de administrador del Bar del club");
+                            window.location.href = "' . BASE_URL . '/index.php";
+                        </script>';
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Alquiler') {
                     echo '<script>
                         alert("El Usuario: ' . $usuario . ' tiene permisos para manejar los alquileres del club");
-                        window.location.href = "<?php echo BASE_URL; ?>/index.php";
-                    </script>'; 
+                        window.location.href = "' . BASE_URL . '/index.php";
+                    </script>';
                     exit;
                 } elseif (isset($_SESSION['nombre_rol']) && $_SESSION['nombre_rol'] == 'Estacionamiento') {
                     echo '<script>
                         alert("El Usuario: ' . $usuario . ' tiene permiso para manejar el estacionamiento del club");
-                        window.location.href = "<?php echo BASE_URL; ?>/index.php";
-                    </script>'; 
+                        window.location.href = "' . BASE_URL . '/index.php";
+                    </script>';
                     exit;
                 }
             } else {

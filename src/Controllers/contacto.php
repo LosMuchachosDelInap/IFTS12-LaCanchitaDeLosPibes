@@ -3,7 +3,11 @@ session_start();
 require_once 'ContactoController.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $emailUsuario = $_SESSION['email'] ?? '';
+    // Si está logueado, usa el email de la sesión; si no, usa el del formulario
+    $emailUsuario = isset($_SESSION['email']) && !empty($_SESSION['email'])
+        ? $_SESSION['email']
+        : ($_POST['email'] ?? '');
+
     $mensaje = $_POST['contacto'] ?? '';
 
     $contacto = new ContactoController();
